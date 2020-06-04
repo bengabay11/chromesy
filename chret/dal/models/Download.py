@@ -1,8 +1,11 @@
+from dataclasses import dataclass
+
 from sqlalchemy import Integer, String, Column, LargeBinary
 
 from chret.dal.models.Base import Base
 
 
+@dataclass
 class Download(Base):
     id = Column(Integer)
     guid = Column(String)

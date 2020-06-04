@@ -1,7 +1,12 @@
 # chret
 > pulls out information about a person using chrome
 
-## Quick Start
+## Installing
+```bash
+$ pip install chret
+```
+
+## Usage
 ### python
 ```python
 from chret import get_credentials

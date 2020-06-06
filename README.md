@@ -6,15 +6,11 @@
 $ pip install chret
 ```
 
-## Usage
-### python
-```python
-from chret import get_credentials
-for site_credentials in get_credentials():
-    print(site_credentials)
-```
+## Features
+- chrome history
+- chrome passwords
+- export/import chrome passwords
+- account profile picture
+- chrome downloads
 
-### terminal
-```bash
-$ chret --get-credentials --output=credentials.csv
-```
+## Usage

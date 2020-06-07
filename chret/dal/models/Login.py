@@ -7,6 +7,7 @@ from chret.dal.models.Base import Base
 
 @dataclass
 class Login(Base):
+    __tablename__ = 'logins'
     origin_url = Column(String)
     action_url = Column(String)
     username_element = Column(String)
@@ -28,5 +29,5 @@ class Login(Base):
     skip_zero_click = Column(Integer)
     generation_upload_status = Column(Integer)
     possible_username_pairs = Column(LargeBinary)
-    id = Column(Integer)
+    id = Column(Integer, primary_key=True)
     date_last_used = Column(Integer)

@@ -19,14 +19,15 @@ class DBConnection(object):
     def create_connection_string(username, password, host, port, route):
         return f"{username}:{password}@{host}:{port}/{route}"
 
-    def select(self, object):
+    def select(self, object, serializable=False):
         with session_scope(self._session_class) as session:
-            return session.query(object).all()
+            query = session.query(object)
+            results = query.all()
+            return [result.dict() for result in results] if serializable else results
 
     def insert(self):
         with session_scope(self._session_class) as session:
             session.add(object)
-            session.commit()
 
     def update(self):
         pass
@@ -47,5 +48,3 @@ def session_scope(session_class):
     except:
         session.rollback()
         raise
-    finally:
-        session.close()

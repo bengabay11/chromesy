@@ -7,9 +7,10 @@ $ pip install chret
 ```
 
 ## Features
-- import/export chrome passwords
+- import/export passwords
 - history
 - account profile picture
 - downloads
+- top visited sites
 
 ## Usage

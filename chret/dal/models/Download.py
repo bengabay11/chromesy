@@ -8,7 +8,7 @@ from chret.dal.models.Base import Base
 @dataclass
 class Download(Base):
     __tablename__ = 'downloads'
-    id = Column(Integer)
+    id = Column(Integer, primary_key=True)
     guid = Column(String)
     current_path = Column(String)
     target_path = Column(String)

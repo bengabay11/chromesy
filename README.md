@@ -8,8 +8,7 @@ $ pip install chret
 
 ## Features
 - chrome history
-- chrome passwords
-- export/import chrome passwords
+- import/export chrome passwords
 - account profile picture
 - chrome downloads
 

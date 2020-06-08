@@ -6,14 +6,14 @@ from sqlalchemy.orm import sessionmaker
 
 class DBConnection(object):
     def __init__(self):
-        self._engine = None
+        self._connection = None
         self._session_class = None
 
     def connect(self, protocol, database):
         url = f"{protocol}://{database}"
-        self._engine = create_engine(url)
-        self._session_class = sessionmaker(bind=self._engine)
-        self._engine.connect()
+        engine = create_engine(url)
+        self._session_class = sessionmaker(bind=engine)
+        self._connection = engine.connect()
 
     @staticmethod
     def create_connection_string(username, password, host, port, route):
@@ -36,7 +36,7 @@ class DBConnection(object):
         pass
 
     def close(self):
-        self._engine.close()
+        self._connection.close()
 
 
 @contextmanager

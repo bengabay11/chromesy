@@ -9,15 +9,19 @@ class DBConnection(object):
         self._engine = None
         self._session_class = None
 
-    def connect(self, protocol, path):
-        url = f"{protocol}://{path}"
+    def connect(self, protocol, database):
+        url = f"{protocol}://{database}"
         self._engine = create_engine(url)
         self._session_class = sessionmaker(bind=self._engine)
         self._engine.connect()
 
+    @staticmethod
+    def create_connection_string(username, password, host, port, route):
+        return f"{username}:{password}@{host}:{port}/{route}"
+
     def select(self, object):
         with session_scope(self._session_class) as session:
-            return session.query(object).fetchall()
+            return session.query(object).all()
 
     def insert(self):
         with session_scope(self._session_class) as session:

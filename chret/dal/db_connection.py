@@ -19,15 +19,15 @@ class DBConnection(object):
     def create_connection_string(username, password, host, port, route):
         return f"{username}:{password}@{host}:{port}/{route}"
 
-    def select(self, object, serializable=False):
+    def select(self, model, serializable=False):
         with session_scope(self._session_class) as session:
-            query = session.query(object)
+            query = session.query(model)
             results = query.all()
             return [result.dict() for result in results] if serializable else results
 
-    def insert(self):
+    def insert(self, row):
         with session_scope(self._session_class) as session:
-            session.add(object)
+            session.add(row)
 
     def update(self):
         pass

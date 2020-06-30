@@ -4,12 +4,13 @@ WRITE_FILE_MODE = "w"
 
 
 def write_csv_file(data, output_file_path):
-    with open(output_file_path, WRITE_FILE_MODE) as output_file:
-        writer = csv.DictWriter(output_file, fieldnames=data.keys())
-        writer.writeheader()
-        for row in data:
-            writer.writerow(row)
+    with open(output_file_path, WRITE_FILE_MODE) as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in data.items():
+            writer.writerow([key, value])
 
 
 def read_csv_file(path):
-    pass
+    with open(path) as csv_file:
+        reader = csv.reader(csv_file)
+        return list(reader)

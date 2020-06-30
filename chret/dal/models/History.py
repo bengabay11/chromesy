@@ -7,7 +7,7 @@ from chret.dal.models.Base import Base
 
 @dataclass
 class History(Base):
-    __tablename__ = 'top_sites'
+    __tablename__ = 'history'
     id = Column(Integer, primary_key=True)
     url = Column(String)
     title = Column(String)

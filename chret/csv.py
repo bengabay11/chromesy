@@ -1,10 +1,9 @@
 import csv
-
-WRITE_FILE_MODE = "w"
+from . import config
 
 
 def write_csv_file(data, output_file_path):
-    with open(output_file_path, WRITE_FILE_MODE) as csv_file:
+    with open(output_file_path, config.WRITE_FILE_MODE) as csv_file:
         writer = csv.writer(csv_file)
         for key, value in data.items():
             writer.writerow([key, value])

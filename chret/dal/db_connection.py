@@ -1,7 +1,7 @@
-from contextlib import contextmanager
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+from chret.dal.session import session_scope
 
 
 class DBConnection(object):
@@ -37,14 +37,3 @@ class DBConnection(object):
 
     def close(self):
         self._connection.close()
-
-
-@contextmanager
-def session_scope(session_class):
-    session = session_class()
-    try:
-        yield session
-        session.commit()
-    except:
-        session.rollback()
-        raise

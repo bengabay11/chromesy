@@ -12,4 +12,4 @@ class LoginsTableAdapter(object):
         pass
         # for credential in credentials:
         #     x = Login(**credential)
-        #     self._conn.insert(Login(**credential))
+        #     self._conn.insert(x)

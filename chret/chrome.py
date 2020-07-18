@@ -1,10 +1,7 @@
-import os
-
-from . import config
 from .dal.table_adapters.history import HistoryTableAdapter
 from .dal.table_adapters.logins import LoginsTableAdapter
 from .dal.table_adapters.top_sites import TopSitesTableAdapter
-from .path import get_chrome_profile_picture_path, get_chrome_user_folder, get_chrome_history_path, \
+from .path import get_chrome_profile_picture_path, get_chrome_history_path, \
     get_chrome_top_sites_path, get_chrome_logins_path
 
 
@@ -29,13 +26,13 @@ class ChromeDataAdapter(object):
     def get_top_sites(self):
         return self._top_sites_table_adapter.get_top_sites()
 
-    def get_google_profile_picture(self, user=config.DEFAULT_USER):
+    def get_google_profile_picture(self, user):
         return open(get_chrome_profile_picture_path(user), "rb")
 
-    def export_chrome_credentials(self, output_file=config.OUTPUT_CREDENTIALS_FILE):
+    def export_chrome_credentials(self, output_file):
         credentials = self._logins_table_adapter.get_chrome_credentials()
         self._file_adapter.write(credentials, output_file)
 
-    def import_chrome_credentials(self, credentials_file=config.OUTPUT_CREDENTIALS_FILE):
+    def import_chrome_credentials(self, credentials_file):
         credentials = self._file_adapter.read(credentials_file)
         self._logins_table_adapter.insert_chrome_credentials(credentials)

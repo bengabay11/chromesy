@@ -3,8 +3,11 @@ LOGINS_FILE = "Login Data"
 HISTORY_FILE = "History"
 PROFILE_PICTURE_FILE = "Google Profile Picture.png"
 TOP_SITES_FILE = "Top Sites"
-DB_PROTOCOL = "sqlite"
-DEFAULT_USER = "~"
-DEFAULT_CREDENTIALS_FILE = 'passwords.csv'
 GOOGLE_PICTURE_FILE = "Google Profile Picture.png"
+
+OUTPUT_CREDENTIALS_FILE = 'passwords.csv'
+DESTINATION_FOLDER = "dist"
+DEFAULT_USER = "~"
+
+DB_PROTOCOL = "sqlite"
 WRITE_FILE_MODE = "w"

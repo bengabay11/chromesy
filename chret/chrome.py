@@ -1,76 +1,41 @@
 import os
 
 from . import config
-from .csv import write_csv_file, read_csv_file
-from .dal.db_connection import DBConnection
 from .dal.table_adapters.history import HistoryTableAdapter
 from .dal.table_adapters.logins import LoginsTableAdapter
 from .dal.table_adapters.top_sites import TopSitesTableAdapter
+from .path import get_chrome_profile_picture_path, get_chrome_user_folder, get_chrome_history_path, \
+    get_chrome_top_sites_path, get_chrome_logins_path
 
 
-db = DBConnection()
+class ChromeDataAdapter(object):
+    def __init__(self, file_adapter):
+        self._file_adapter = file_adapter
+        self._logins_table_adapter = LoginsTableAdapter()
+        self._history_table_adapter = HistoryTableAdapter()
+        self._top_sites_table_adapter = TopSitesTableAdapter()
 
+    def _connect_dbs(self, user, db_protocol):
+        self._logins_table_adapter.connect(db_protocol, get_chrome_logins_path(user))
+        self._history_table_adapter.connect(db_protocol, get_chrome_history_path(user))
+        self._top_sites_table_adapter.connect(db_protocol, get_chrome_top_sites_path(user))
 
-def get_chrome_user_folder(user=config.DEFAULT_USER):
-    home_directory = os.path.expanduser(user)
-    return os.path.join(home_directory, config.CHROME_WINDOWS_PATH)
+    def get_chrome_history(self):
+        return self._history_table_adapter.get_chrome_history()
 
+    def get_chrome_downloads(self):
+        return self._history_table_adapter.get_chrome_downloads()
 
-def get_chrome_history_path(user=config.DEFAULT_USER):
-    return os.path.join(get_chrome_user_folder(user), config.HISTORY_FILE)
+    def get_top_sites(self):
+        return self._top_sites_table_adapter.get_top_sites()
 
+    def get_google_profile_picture(self, user=config.DEFAULT_USER):
+        return open(get_chrome_profile_picture_path(user), "rb")
 
-def get_chrome_credentials(user=config.DEFAULT_USER):
-    logins_table = LoginsTableAdapter(db)
-    login_path = os.path.join(get_chrome_user_folder(user), config.LOGINS_FILE)
-    db.connect(config.DB_PROTOCOL, "/" + login_path)
-    credentials = logins_table.get_chrome_credentials()
-    db.close()
-    return credentials
+    def export_chrome_credentials(self, output_file=config.OUTPUT_CREDENTIALS_FILE):
+        credentials = self._logins_table_adapter.get_chrome_credentials()
+        self._file_adapter.write(credentials, output_file)
 
-
-def insert_chrome_credentials(credentials): pass
-
-
-def export_chrome_credentials(output_file=config.DEFAULT_CREDENTIALS_FILE, user=config.DEFAULT_USER):
-    credentials = get_chrome_credentials(user)
-    write_csv_file(credentials, output_file)
-
-
-def import_chrome_credentials(credentials_file=config.DEFAULT_CREDENTIALS_FILE):
-    credentials = read_csv_file(credentials_file)
-    insert_chrome_credentials(credentials)
-
-
-def get_chrome_history(user=config.DEFAULT_USER):
-    history_table = HistoryTableAdapter(db)
-    history_path = os.path.join(get_chrome_user_folder(user), config.HISTORY_FILE)
-    db.connect(config.DB_PROTOCOL, "/" + history_path)
-    history = history_table.get_chrome_history()
-    db.close()
-    return history
-
-
-def get_chrome_downloads(user=config.DEFAULT_USER):
-    history_table = HistoryTableAdapter(db)
-    history_path = os.path.join(get_chrome_user_folder(user), config.HISTORY_FILE)
-    db.connect(config.DB_PROTOCOL, "/" + history_path)
-    downloads = history_table.get_chrome_downloads()
-    db.close()
-    return downloads
-
-
-def get_top_sites(user=config.DEFAULT_USER):
-    top_sites_table = TopSitesTableAdapter(db)
-    top_site_path = os.path.join(get_chrome_user_folder(user), config.TOP_SITES_FILE)
-    db.connect(config.DB_PROTOCOL, "/" + top_site_path)
-    top_sites = top_sites_table.get_top_sites()
-    db.close()
-    return top_sites
-
-
-def get_google_profile_picture(user=config.DEFAULT_USER):
-    profile_picture_path = os.path.join(get_chrome_user_folder(user), config.GOOGLE_PICTURE_FILE)
-    return open(profile_picture_path, "rb")
-
-get_top_sites()
+    def import_chrome_credentials(self, credentials_file=config.OUTPUT_CREDENTIALS_FILE):
+        credentials = self._file_adapter.read(credentials_file)
+        self._logins_table_adapter.insert_chrome_credentials(credentials)

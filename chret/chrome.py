@@ -12,7 +12,7 @@ class ChromeDataAdapter(object):
         self._history_table_adapter = HistoryTableAdapter()
         self._top_sites_table_adapter = TopSitesTableAdapter()
 
-    def _connect_dbs(self, user, db_protocol):
+    def connect_dbs(self, user, db_protocol):
         self._logins_table_adapter.connect(db_protocol, get_chrome_logins_path(user))
         self._history_table_adapter.connect(db_protocol, get_chrome_history_path(user))
         self._top_sites_table_adapter.connect(db_protocol, get_chrome_top_sites_path(user))

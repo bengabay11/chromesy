@@ -3,7 +3,7 @@ import os
 from chret import config
 
 
-def get_chrome_user_folder(user=config.DEFAULT_USER):
+def get_chrome_user_folder(user=None):
     home_directory = os.path.expanduser(user)
     return "/" + os.path.join(home_directory, config.CHROME_WINDOWS_PATH)
 

@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from chret.dal.session import session_scope
+from chromesy.dal.session import session_scope
 
 
 class DBConnection(object):

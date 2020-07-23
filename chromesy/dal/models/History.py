@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from sqlalchemy import Integer, String, Column, Boolean
 
-from chret.dal.models.Base import Base
+from chromesy.dal.models.Base import Base
 
 
 @dataclass

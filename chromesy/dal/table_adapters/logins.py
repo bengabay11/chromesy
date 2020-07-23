@@ -1,5 +1,5 @@
-from chret.dal.db_connection import DBConnection
-from chret.dal.models.Login import Login
+from chromesy.dal.db_connection import DBConnection
+from chromesy.dal.models.Login import Login
 
 
 class LoginsTableAdapter(DBConnection):

@@ -1,4 +1,4 @@
-from chret.interfaces.IFileAdapter import IFileAdapter
+from chromesy.interfaces.IFileAdapter import IFileAdapter
 
 
 class JsonFileAdapter(IFileAdapter):

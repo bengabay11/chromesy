@@ -1,6 +1,6 @@
 import csv
-from chret import config
-from chret.interfaces.IFileAdapter import IFileAdapter
+from chromesy import config
+from chromesy.interfaces.IFileAdapter import IFileAdapter
 
 
 class CsvFileAdapter(IFileAdapter):

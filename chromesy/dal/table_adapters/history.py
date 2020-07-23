@@ -1,6 +1,6 @@
-from chret.dal.db_connection import DBConnection
-from chret.dal.models.Download import Download
-from chret.dal.models.History import History
+from chromesy.dal.db_connection import DBConnection
+from chromesy.dal.models.Download import Download
+from chromesy.dal.models.History import History
 
 
 class HistoryTableAdapter(DBConnection):

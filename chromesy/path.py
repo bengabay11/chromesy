@@ -1,6 +1,6 @@
 import os
 
-from chret import config
+from chromesy import config
 
 
 def get_chrome_user_folder(user=None):

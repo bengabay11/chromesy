@@ -1,5 +1,5 @@
-from chret.dal.db_connection import DBConnection
-from chret.dal.models.TopSite import TopSite
+from chromesy.dal.db_connection import DBConnection
+from chromesy.dal.models.TopSite import TopSite
 
 
 class TopSitesTableAdapter(DBConnection):

@@ -16,6 +16,9 @@ setuptools.setup(
     install_requires=[
         "sqlalchemy==1.3.18"
     ],
+    entry_points={
+        'console_scripts': ['chromesy = chromesy:main'],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

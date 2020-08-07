@@ -1,0 +1,1 @@
+pylint -E --rcfile=.pylintrc chromesy

@@ -7,7 +7,7 @@ from chromesy.dal.models.Base import Base
 
 @dataclass
 class History(Base):
-    __tablename__ = 'history'
+    __tablename__ = 'urls'
     id = Column(Integer, primary_key=True)
     url = Column(String)
     title = Column(String)
@@ -15,4 +15,3 @@ class History(Base):
     typed_count = Column(Boolean)
     last_visit_time = Column(Integer)
     hidden = Column(Boolean)
-

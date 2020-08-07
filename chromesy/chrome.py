@@ -1,24 +1,19 @@
-from .dal.table_adapters.history import HistoryTableAdapter
-from .dal.table_adapters.logins import LoginsTableAdapter
-from .dal.table_adapters.top_sites import TopSitesTableAdapter
-from .path import get_chrome_profile_picture_path, get_chrome_history_path, \
-    get_chrome_top_sites_path, get_chrome_logins_path
+from operator import itemgetter
+
+from .path import get_chrome_profile_picture_path
 
 
 class ChromeDataAdapter(object):
-    def __init__(self, file_adapter):
+    def __init__(self, file_adapter, logins_table_adapter, history_table_adapter, top_sites_table_adapter):
         self._file_adapter = file_adapter
-        self._logins_table_adapter = LoginsTableAdapter()
-        self._history_table_adapter = HistoryTableAdapter()
-        self._top_sites_table_adapter = TopSitesTableAdapter()
+        self._logins_table_adapter = logins_table_adapter
+        self._history_table_adapter = history_table_adapter
+        self._top_sites_table_adapter = top_sites_table_adapter
 
-    def connect_dbs(self, user, db_protocol):
-        self._logins_table_adapter.connect(db_protocol, get_chrome_logins_path(user))
-        self._history_table_adapter.connect(db_protocol, get_chrome_history_path(user))
-        self._top_sites_table_adapter.connect(db_protocol, get_chrome_top_sites_path(user))
-
-    def get_chrome_history(self):
-        return self._history_table_adapter.get_chrome_history()
+    def export_chrome_history(self, output_file_path):
+        history = self._history_table_adapter.get_chrome_history(serializable=False)
+        sorted_history = sorted(history, key=itemgetter('id'))
+        self._file_adapter.write(sorted_history, output_file_path)
 
     def get_chrome_downloads(self):
         return self._history_table_adapter.get_chrome_downloads()
@@ -29,9 +24,9 @@ class ChromeDataAdapter(object):
     def get_google_profile_picture(self, user):
         return open(get_chrome_profile_picture_path(user), "rb")
 
-    def export_chrome_credentials(self, output_file):
+    def export_chrome_credentials(self, output_file_path):
         credentials = self._logins_table_adapter.get_chrome_credentials()
-        self._file_adapter.write(credentials, output_file)
+        self._file_adapter.write(credentials, output_file_path)
 
     def import_chrome_credentials(self, credentials_file):
         credentials = self._file_adapter.read(credentials_file)

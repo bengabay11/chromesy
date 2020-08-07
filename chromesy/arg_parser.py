@@ -15,7 +15,7 @@ def add_file_arg(parser):
 def create_arg_parser():
     parser = argparse.ArgumentParser(
         prog="chromesy",
-        description=__doc__,
+        description="Import and Export chrome data",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     subparsers = parser.add_subparsers(dest="mode")

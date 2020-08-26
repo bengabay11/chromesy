@@ -1,4 +1,5 @@
 from operator import itemgetter
+from shutil import copyfile
 
 from .path import get_chrome_profile_picture_path
 
@@ -10,24 +11,26 @@ class ChromeDataAdapter(object):
         self._history_table_adapter = history_table_adapter
         self._top_sites_table_adapter = top_sites_table_adapter
 
-    def export_chrome_history(self, output_file_path):
-        history = self._history_table_adapter.get_chrome_history(serializable=False)
+    def export_history(self, output_file_path):
+        history = self._history_table_adapter.get_chrome_history(serializable=True)
         sorted_history = sorted(history, key=itemgetter('id'))
         self._file_adapter.write(sorted_history, output_file_path)
 
-    def get_chrome_downloads(self):
+    def export_downloads(self):
         return self._history_table_adapter.get_chrome_downloads()
 
-    def get_top_sites(self):
-        return self._top_sites_table_adapter.get_top_sites()
+    def export_top_sites(self, output_file_path):
+        top_sites = self._top_sites_table_adapter.get_top_sites(serializable=True)
+        self._file_adapter.write(top_sites, output_file_path)
 
-    def get_google_profile_picture(self, user):
-        return open(get_chrome_profile_picture_path(user), "rb")
+    def export_profile_picture(self, user, destination_path):
+        source_path = get_chrome_profile_picture_path(user)
+        copyfile(source_path, destination_path)
 
-    def export_chrome_credentials(self, output_file_path):
+    def export_credentials(self, output_file_path):
         credentials = self._logins_table_adapter.get_chrome_credentials()
         self._file_adapter.write(credentials, output_file_path)
 
-    def import_chrome_credentials(self, credentials_file):
+    def import_credentials(self, credentials_file):
         credentials = self._file_adapter.read(credentials_file)
         self._logins_table_adapter.insert_chrome_credentials(credentials)

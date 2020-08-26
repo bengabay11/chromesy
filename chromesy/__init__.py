@@ -44,7 +44,9 @@ if not os.path.exists("dist"):
     os.mkdir("dist")
 try:
     if args.mode == "export":
-        # chrome_data_adapter.export_chrome_credentials("dist/credentials.json")
-        chrome_data_adapter.export_chrome_history("dist/history.csv")
+        chrome_data_adapter.export_credentials("dist/credentials.csv")
+        chrome_data_adapter.export_history("dist/history.csv")
+        chrome_data_adapter.export_profile_picture("~", "dist/profile.jpg")
+        chrome_data_adapter.export_top_sites("dist/top_sites.csv")
 except OperationalError as e:
     print("chrome database is locked. close chrome and try again")

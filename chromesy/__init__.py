@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    chret
+    chromesy
     ~~~~~
-    chret is a package for getting information about a person using chrome browser.
+    chromesy is a package for manipulate chrome browser data.
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """

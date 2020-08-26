@@ -48,5 +48,6 @@ try:
         chrome_data_adapter.export_history("dist/history.csv")
         chrome_data_adapter.export_profile_picture("~", "dist/profile.jpg")
         chrome_data_adapter.export_top_sites("dist/top_sites.csv")
+        chrome_data_adapter.export_downloads("dist/downloads.csv")
 except OperationalError as e:
     print("chrome database is locked. close chrome and try again")

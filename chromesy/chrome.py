@@ -16,16 +16,13 @@ class ChromeDataAdapter(object):
         sorted_history = sorted(history, key=itemgetter('id'))
         self._file_adapter.write(sorted_history, output_file_path)
 
-    def export_downloads(self):
-        return self._history_table_adapter.get_chrome_downloads()
+    def export_downloads(self, output_file_path):
+        downloads = self._history_table_adapter.get_chrome_downloads()
+        self._file_adapter.write(downloads, output_file_path)
 
     def export_top_sites(self, output_file_path):
         top_sites = self._top_sites_table_adapter.get_top_sites(serializable=True)
         self._file_adapter.write(top_sites, output_file_path)
-
-    def export_profile_picture(self, user, destination_path):
-        source_path = get_chrome_profile_picture_path(user)
-        copyfile(source_path, destination_path)
 
     def export_credentials(self, output_file_path):
         credentials = self._logins_table_adapter.get_chrome_credentials()
@@ -34,3 +31,7 @@ class ChromeDataAdapter(object):
     def import_credentials(self, credentials_file):
         credentials = self._file_adapter.read(credentials_file)
         self._logins_table_adapter.insert_chrome_credentials(credentials)
+
+    def export_profile_picture(self, user, destination_path):
+        source_path = get_chrome_profile_picture_path(user)
+        copyfile(source_path, destination_path)

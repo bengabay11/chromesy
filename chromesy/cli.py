@@ -31,7 +31,7 @@ def export_chrome_data(chrome_data_adapter, user, destination_folder):
     chrome_data_adapter.export_downloads(f"{destination_folder}/downloads.csv")
 
 
-def import_chrome_data(chrome_data_adapter):
+def import_chrome_data(chrome_data_adapter, user):
     pass
 
 
@@ -52,10 +52,8 @@ def main():
         history_table_adapter,
         top_sites_table_adapter
     )
-    try:
-        if args.mode == "export":
-            export_chrome_data(chrome_data_adapter, args.user, args.destination_folder)
-        elif args.mode == "import":
-            import_chrome_data(chrome_data_adapter)
-    except OperationalError as e:
-        print("chrome database is locked. close chrome and try again")
+    mode_actions = {
+        "export": lambda: export_chrome_data(chrome_data_adapter, args.user, args.destination_folder),
+        "import": lambda: import_chrome_data(chrome_data_adapter, args.user)
+    }
+    mode_actions[args.mode]()

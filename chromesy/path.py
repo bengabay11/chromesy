@@ -10,7 +10,7 @@ def get_chrome_user_folder(user):
     if not os.path.exists(home_directory):
         raise UserNotFoundException(user)
     chrome_user_folder = os.path.join(home_directory, config.CHROME_WINDOWS_PATH)
-    if not not os.path.exists(chrome_user_folder):
+    if not os.path.exists(chrome_user_folder):
         raise ChromeNotInstalledException(user)
     return chrome_user_folder
 

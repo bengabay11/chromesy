@@ -1,11 +1,13 @@
 import setuptools
 
+from chromesy import __version__
+
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="chromesy",
-    version="1.0.0",
+    version=__version__,
     author="Ben Gabay",
     author_email="ben.gabay38@gmail.com",
     description="",
@@ -17,7 +19,7 @@ setuptools.setup(
         "sqlalchemy==1.3.18"
     ],
     entry_points={
-        'console_scripts': ['chromesy = chromesy:main'],
+        'console_scripts': ['chromesy = chromesy.cli:main'],
     },
     classifiers=[
         "Programming Language :: Python :: 3",

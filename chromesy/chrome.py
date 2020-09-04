@@ -13,8 +13,7 @@ class ChromeDataAdapter(object):
 
     def export_history(self, output_file_path):
         history = self._history_table_adapter.get_chrome_history(serializable=True)
-        sorted_history = sorted(history, key=itemgetter('id'))
-        self._file_adapter.write(sorted_history, output_file_path)
+        self._file_adapter.write(history, output_file_path)
 
     def export_downloads(self, output_file_path):
         downloads = self._history_table_adapter.get_chrome_downloads()

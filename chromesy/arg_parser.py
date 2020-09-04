@@ -2,6 +2,8 @@ import argparse
 import getpass
 import sys
 
+from chromesy.config import DEFAULT_EXPORT_DESTINATION_FOLDER
+
 
 def create_import_parser(subparsers):
     parser_import = subparsers.add_parser(
@@ -28,7 +30,7 @@ def create_export_parser(subparsers):
         dest="destination_folder",
         type=str,
         help="destination folder to export the files",
-        default=getpass.getuser()
+        default=DEFAULT_EXPORT_DESTINATION_FOLDER
     )
 
 

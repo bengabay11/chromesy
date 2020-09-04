@@ -5,7 +5,7 @@ TOP_SITES_FILE = "Top Sites"
 GOOGLE_PICTURE_FILE = "Google Profile Picture.png"
 
 OUTPUT_CREDENTIALS_FILE = 'passwords.csv'
-DESTINATION_FOLDER = "dist"
+DEFAULT_EXPORT_DESTINATION_FOLDER = "dist"
 DEFAULT_USER = "~"
 
 DB_PROTOCOL = "sqlite"

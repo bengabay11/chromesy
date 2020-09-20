@@ -1,7 +1,7 @@
 import os
 
 from chromesy.dal.ChromeDBAdapter import ChromeDBAdapter
-from chromesy.services.chrome import export_profile_picture
+from chromesy.services.profile_picture import export_profile_picture
 from chromesy.services.file_adapters import csv
 
 

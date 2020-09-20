@@ -6,6 +6,7 @@
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """
+
 import argparse
 import getpass
 import sys
@@ -19,7 +20,6 @@ from .dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from .dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from .dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
 from .dal.DBConnection import DBConnection
-from chromesy.services.file_adapters.CsvFileAdapter import CsvFileAdapter
 from .path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 
 
@@ -93,10 +93,9 @@ def main() -> None:
     arg_parser = create_arg_parser()
     args = arg_parser.parse_args()
     chrome_db_adapter = create_chrome_db_adapter(args.user)
-    csv_file_adapter = CsvFileAdapter()
     mode_actions = {
-        "export": lambda: export_chrome_data(chrome_db_adapter, csv_file_adapter, args.user, args.destination_folder),
-        "import": lambda: import_chrome_data(chrome_db_adapter, csv_file_adapter, args.user)
+        "export": lambda: export_chrome_data(chrome_db_adapter, args.user, args.destination_folder),
+        "import": lambda: import_chrome_data(chrome_db_adapter, args.user)
     }
     mode_actions[args.mode]()
     chrome_db_adapter.close()

@@ -1,6 +1,6 @@
 from chromesy.dal.DBConnection import DBConnection
 from chromesy.dal.table_adapters.TopSitesTableAdapter import TopSitesTableAdapter
-from chromesy.utils.singleton_meta import SingletonMeta
+from chromesy.utils.SingletonMeta import SingletonMeta
 
 
 class TopSitesDBAdapter(metaclass=SingletonMeta):

@@ -1,8 +1,8 @@
 import os
 
 from chromesy.config import CHROME_WINDOWS_PATH, HISTORY_FILE, LOGINS_FILE, TOP_SITES_FILE, GOOGLE_PICTURE_FILE
-from chromesy.utils.exceptions.chrome_not_installed_exception import ChromeNotInstalledException
-from chromesy.utils.exceptions.user_not_found_exception import UserNotFoundException
+from chromesy.utils.exceptions.ChromeNotInstalledException import ChromeNotInstalledException
+from chromesy.utils.exceptions.UserNotFoundException import UserNotFoundException
 
 
 def get_chrome_user_folder(user: str) -> str:

@@ -1,3 +1,5 @@
+from typing import Type
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -16,7 +18,7 @@ class DBConnection(object):
         self._session_class = sessionmaker(bind=engine)
         self._connection = engine.connect()
 
-    def select(self, model: Base, serializable: bool = False) -> list:
+    def select(self, model: Type[Base], serializable: bool = False) -> list:
         with session_scope(self._session_class) as session:
             query = session.query(model)
             results = query.all()

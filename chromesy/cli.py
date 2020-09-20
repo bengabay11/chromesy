@@ -23,7 +23,7 @@ from .file_adapters.csv_adapter import CsvFileAdapter
 from .path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 
 
-def create_import_parser(subparsers):
+def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
     parser_import = subparsers.add_parser(
         "import",
         description="imports a json file with the data to chrome",
@@ -37,7 +37,7 @@ def create_import_parser(subparsers):
     )
 
 
-def create_export_parser(subparsers):
+def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
     parser_export = subparsers.add_parser(
         "export",
         description="outputs a json file with the data"
@@ -52,7 +52,7 @@ def create_export_parser(subparsers):
     )
 
 
-def create_arg_parser():
+def create_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="chromesy",
         description="Import and Export chrome data",
@@ -72,7 +72,7 @@ def create_arg_parser():
     return parser
 
 
-def create_chrome_db_adapter(user):
+def create_chrome_db_adapter(user: str) -> ChromeDBAdapter:
     logins_db_connection = DBConnection()
     history_db_connection = DBConnection()
     top_sites_db_connection = DBConnection()
@@ -89,7 +89,7 @@ def create_chrome_db_adapter(user):
     )
 
 
-def main():
+def main() -> None:
     arg_parser = create_arg_parser()
     args = arg_parser.parse_args()
     chrome_db_adapter = create_chrome_db_adapter(args.user)

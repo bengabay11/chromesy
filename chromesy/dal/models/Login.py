@@ -5,7 +5,7 @@ from sqlalchemy import Integer, String, Column, LargeBinary
 from chromesy.dal.models.Base import Base
 
 
-# @dataclass
+@dataclass
 class Login(Base):
     __tablename__ = 'logins'
     origin_url = Column(String)

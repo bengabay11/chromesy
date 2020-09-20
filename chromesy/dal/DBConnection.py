@@ -1,39 +1,36 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from chromesy.dal.models.Base import Base
 from chromesy.dal.session import session_scope
 
 
 class DBConnection(object):
-    def __init__(self):
+    def __init__(self) -> None:
         self._connection = None
         self._session_class = None
 
-    def connect(self, protocol, database):
+    def connect(self, protocol: str, database: str) -> None:
         url = f"{protocol}://{database}"
         engine = create_engine(url)
         self._session_class = sessionmaker(bind=engine)
         self._connection = engine.connect()
 
-    @staticmethod
-    def create_connection_string(username, password, host, port, route):
-        return f"{username}:{password}@{host}:{port}/{route}"
-
-    def select(self, model, serializable=False):
+    def select(self, model: Base, serializable: bool = False) -> list:
         with session_scope(self._session_class) as session:
             query = session.query(model)
             results = query.all()
-            return [result.dict() for result in results] if serializable else results
+            return [result.json() for result in results] if serializable else results
 
-    def insert(self, row):
+    def insert(self, row: Base) -> None:
         with session_scope(self._session_class) as session:
             session.add(row)
 
-    def update(self):
+    def update(self) -> None:
         pass
 
-    def delete(self):
+    def delete(self) -> None:
         pass
 
-    def close(self):
+    def close(self) -> None:
         self._connection.close()

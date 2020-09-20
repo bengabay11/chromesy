@@ -7,10 +7,10 @@ from sqlalchemy.ext.declarative import as_declarative, declared_attr
 @as_declarative()
 class Base(object):
     @declared_attr
-    def __tablename__(cls):
+    def __tablename__(cls) -> str:
         return cls.__name__.lower()
 
-    def dict(self):
+    def json(self) -> dict:
         dict_base = self.__dict__.copy()
         for key in dict_base.copy():
             if key.startswith("_"):

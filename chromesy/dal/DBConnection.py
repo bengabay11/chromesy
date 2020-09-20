@@ -1,4 +1,4 @@
-from typing import Type
+from typing import Type, Any
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -27,12 +27,15 @@ class DBConnection(object):
     def insert(self, row: Base) -> None:
         with session_scope(self._session_class) as session:
             session.add(row)
+            session.commit()
 
-    def update(self) -> None:
-        pass
+    def update(self, row: Base, column: Any, new_value: Any) -> None:
+        setattr(row, column, new_value)
 
-    def delete(self) -> None:
-        pass
+    def delete(self, row: Base) -> None:
+        with session_scope(self._session_class) as session:
+            session.delete(row)
+            session.commit()
 
     def close(self) -> None:
         self._connection.close()

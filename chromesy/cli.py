@@ -19,7 +19,7 @@ from .dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from .dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from .dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
 from .dal.DBConnection import DBConnection
-from .file_adapters.csv_adapter import CsvFileAdapter
+from chromesy.services.file_adapters.CsvFileAdapter import CsvFileAdapter
 from .path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 
 

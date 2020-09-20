@@ -2,7 +2,7 @@ import os
 
 from chromesy.dal.ChromeDBAdapter import ChromeDBAdapter
 from chromesy.interfaces.IFileAdapter import IFileAdapter
-from chromesy.utils.chrome import export_profile_picture
+from chromesy.services.chrome import export_profile_picture
 
 
 def export_chrome_data(

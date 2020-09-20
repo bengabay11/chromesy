@@ -1,9 +1,9 @@
 import csv
-from chromesy import config
+from chromesy.config import WRITE_FILE_MODE
 
 
 def write(data: list, output_file_path: str) -> None:
-    with open(output_file_path, config.WRITE_FILE_MODE) as csv_file:
+    with open(output_file_path, WRITE_FILE_MODE) as csv_file:
         writer = csv.writer(csv_file)
         columns = data[0].keys()
         writer.writerow(columns)

@@ -12,9 +12,8 @@ import getpass
 import sys
 
 
-from . import config
 from .chrome import export_chrome_data, import_chrome_data
-from .config import DEFAULT_EXPORT_DESTINATION_FOLDER
+from .config import DEFAULT_EXPORT_DESTINATION_FOLDER, DB_PROTOCOL
 from .dal.ChromeDBAdapter import ChromeDBAdapter
 from .dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from .dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
@@ -76,9 +75,9 @@ def create_chrome_db_adapter(user: str) -> ChromeDBAdapter:
     logins_db_connection = DBConnection()
     history_db_connection = DBConnection()
     top_sites_db_connection = DBConnection()
-    logins_db_connection.connect(config.DB_PROTOCOL, get_chrome_logins_path(user))
-    history_db_connection.connect(config.DB_PROTOCOL, get_chrome_history_path(user))
-    top_sites_db_connection.connect(config.DB_PROTOCOL, get_chrome_top_sites_path(user))
+    logins_db_connection.connect(DB_PROTOCOL, get_chrome_logins_path(user))
+    history_db_connection.connect(DB_PROTOCOL, get_chrome_history_path(user))
+    top_sites_db_connection.connect(DB_PROTOCOL, get_chrome_top_sites_path(user))
     logins_db_adapter = LoginsDBAdapter(logins_db_connection)
     history_db_adapter = HistoryDBAdapter(history_db_connection)
     top_sites_db_adapter = TopSitesDBAdapter(top_sites_db_connection)

@@ -10,13 +10,15 @@ import argparse
 import getpass
 import sys
 
+
 from . import config
 from .chrome import export_chrome_data, import_chrome_data
-from .chrome_data_adapter import ChromeDataAdapter
 from .config import DEFAULT_EXPORT_DESTINATION_FOLDER
-from .dal.table_adapters.history import HistoryTableAdapter
-from .dal.table_adapters.logins import LoginsTableAdapter
-from .dal.table_adapters.top_sites import TopSitesTableAdapter
+from .dal.ChromeDBAdapter import ChromeDBAdapter
+from .dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
+from .dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
+from .dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
+from .dal.DBConnection import DBConnection
 from .file_adapters.csv_adapter import CsvFileAdapter
 from .path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 
@@ -70,25 +72,30 @@ def create_arg_parser():
     return parser
 
 
+def create_chrome_db_adapter(user):
+    logins_db_connection = DBConnection()
+    history_db_connection = DBConnection()
+    top_sites_db_connection = DBConnection()
+    logins_db_connection.connect(config.DB_PROTOCOL, get_chrome_logins_path(user))
+    history_db_connection.connect(config.DB_PROTOCOL, get_chrome_history_path(user))
+    top_sites_db_connection.connect(config.DB_PROTOCOL, get_chrome_top_sites_path(user))
+    logins_db_adapter = LoginsDBAdapter(logins_db_connection)
+    history_db_adapter = HistoryDBAdapter(history_db_connection)
+    top_sites_db_adapter = TopSitesDBAdapter(top_sites_db_connection)
+    return ChromeDBAdapter(
+        logins_db_adapter,
+        history_db_adapter,
+        top_sites_db_adapter
+    )
+
+
 def main():
     arg_parser = create_arg_parser()
     args = arg_parser.parse_args()
-
+    chrome_db_adapter = create_chrome_db_adapter(args.user)
     csv_file_adapter = CsvFileAdapter()
-    logins_table_adapter = LoginsTableAdapter()
-    history_table_adapter = HistoryTableAdapter()
-    top_sites_table_adapter = TopSitesTableAdapter()
-    logins_table_adapter.connect(config.DB_PROTOCOL, get_chrome_logins_path(args.user))
-    history_table_adapter.connect(config.DB_PROTOCOL, get_chrome_history_path(args.user))
-    top_sites_table_adapter.connect(config.DB_PROTOCOL, get_chrome_top_sites_path(args.user))
-    chrome_data_adapter = ChromeDataAdapter(
-        csv_file_adapter,
-        logins_table_adapter,
-        history_table_adapter,
-        top_sites_table_adapter
-    )
     mode_actions = {
-        "export": lambda: export_chrome_data(chrome_data_adapter, args.user, args.destination_folder),
-        "import": lambda: import_chrome_data(chrome_data_adapter, args.user)
+        "export": lambda: export_chrome_data(chrome_db_adapter, csv_file_adapter, args.user, args.destination_folder),
+        "import": lambda: import_chrome_data(chrome_db_adapter, csv_file_adapter, args.user)
     }
     mode_actions[args.mode]()

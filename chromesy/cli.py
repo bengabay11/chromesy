@@ -99,3 +99,4 @@ def main() -> None:
         "import": lambda: import_chrome_data(chrome_db_adapter, csv_file_adapter, args.user)
     }
     mode_actions[args.mode]()
+    chrome_db_adapter.close()

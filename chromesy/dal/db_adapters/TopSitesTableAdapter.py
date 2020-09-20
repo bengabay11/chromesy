@@ -11,3 +11,6 @@ class TopSitesDBAdapter(metaclass=SingletonMeta):
     @property
     def top_sites(self) -> TopSitesTableAdapter:
         return self._top_sites_table_adapter
+
+    def close(self) -> None:
+        self._db_connection.close()

@@ -11,3 +11,6 @@ class LoginsDBAdapter(metaclass=SingletonMeta):
     @property
     def logins(self) -> LoginsTableAdapter:
         return self._logins_table_adapter
+
+    def close(self) -> None:
+        self._db_connection.close()

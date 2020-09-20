@@ -26,3 +26,7 @@ class ChromeDBAdapter(metaclass=SingletonMeta):
     @property
     def top_sites(self) -> TopSitesDBAdapter:
         return self._top_sites_db_adaper
+
+    def close(self) -> None:
+        for db_adapter in [self._logins_db_adapter, self._history_db_adapter, self._top_sites_db_adaper]:
+            db_adapter.close()

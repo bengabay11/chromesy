@@ -17,3 +17,6 @@ class HistoryDBAdapter(metaclass=SingletonMeta):
     @property
     def downloads(self) -> DownloadsTableAdapter:
         return self._downloads_table_adapter
+
+    def close(self) -> None:
+        self._db_connection.close()

@@ -9,7 +9,6 @@
 
 import argparse
 import getpass
-import sys
 
 
 from .chrome import export_chrome_data, import_chrome_data

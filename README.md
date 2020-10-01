@@ -24,10 +24,11 @@ usage: chromesy [-h] {export,import} ...
 Import and Export chrome data
 
 positional arguments:
-  {export,import}
+  {import,export}
 
 optional arguments:
-  -h, --help       show this help message and exit
+  -h, --help            show this help message and exit
+  -u USER, --user USER
 ```
 
 ## License

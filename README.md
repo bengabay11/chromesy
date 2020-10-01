@@ -1,5 +1,5 @@
 # chromesy
-chromesy is a command line tool for manipulate chrome browser data.
+chromesy is a command line tool for export and import chrome browser data.
 
 ## Features
 - import/export passwords

@@ -2,7 +2,7 @@
 """
     chromesy
     ~~~~~
-    chromesy is a package for manipulate chrome browser data.
+    chromesy is a package for export and import chrome browser data.
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """

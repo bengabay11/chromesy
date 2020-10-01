@@ -5,6 +5,10 @@ TOP_SITES_FILE = "Top Sites"
 GOOGLE_PICTURE_FILE = "Google Profile Picture.png"
 
 OUTPUT_CREDENTIALS_FILE = 'passwords.csv'
+OUTPUT_HISTORY_FILE = 'history.csv'
+OUTPUT_DOWNLOADS_FILE = 'downloads.csv'
+OUTPUT_TOP_SITES_FILE = 'top_sites.csv'
+OUTPUT_PROFILE_PICTURE_FILE = "profile.jpg"
 DEFAULT_EXPORT_DESTINATION_FOLDER = "dist"
 DEFAULT_USER = "~"
 

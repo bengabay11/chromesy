@@ -9,6 +9,6 @@ class LoginsTableAdapter(object):
     def get_chrome_credentials(self, serializable: bool = True) -> list:
         return self._db_connection.select(Login, serializable=serializable)
 
-    def insert_chrome_credentials(self, credentials: dict):
+    def insert_chrome_credentials(self, credentials: dict) -> None:
         login = Login(**credentials)
         self._db_connection.insert(login)

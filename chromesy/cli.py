@@ -31,8 +31,7 @@ def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
         "-f",
         "--from",
         dest="from_file",
-        type=argparse.FileType("r", encoding="utf-8"),
-        default=sys.stdin
+        type=str
     )
 
 
@@ -94,7 +93,7 @@ def main() -> None:
     chrome_db_adapter = create_chrome_db_adapter(args.user)
     mode_actions = {
         "export": lambda: export_chrome_data(chrome_db_adapter, args.user, args.destination_folder),
-        "import": lambda: import_chrome_data(chrome_db_adapter, args.user)
+        "import": lambda: import_chrome_data(chrome_db_adapter, args.from_file)
     }
     mode_actions[args.mode]()
     chrome_db_adapter.close()

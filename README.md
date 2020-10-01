@@ -1,8 +1,6 @@
 # chromesy
 chromesy is a command line tool for manipulate chrome browser data.
 
-The tool can be used as a payload that collects information about the user that uses chrome. 
-
 ## Features
 - import/export passwords
 - history

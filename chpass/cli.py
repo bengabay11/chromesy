@@ -12,7 +12,7 @@ import getpass
 
 
 from .chrome import export_chrome_data, import_chrome_data
-from .config import DEFAULT_EXPORT_DESTINATION_FOLDER, DB_PROTOCOL
+from .config import DEFAULT_EXPORT_DESTINATION_FOLDER, DB_PROTOCOL, DEFAULT_EXPORT_ALL_DATA
 from .dal.ChromeDBAdapter import ChromeDBAdapter
 from .dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from .dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
@@ -30,14 +30,16 @@ def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
         "-f",
         "--from",
         dest="from_file",
-        type=str
+        help="credentials file to import from",
+        type=str,
+        required=True
     )
 
 
 def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
     parser_export = subparsers.add_parser(
         "export",
-        description="outputs a json file with the data"
+        description="outputs a csv file with the data"
     )
     parser_export.add_argument(
         "-d",
@@ -46,6 +48,14 @@ def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
         type=str,
         help="destination folder to export the files",
         default=DEFAULT_EXPORT_DESTINATION_FOLDER
+    )
+    parser_export.add_argument(
+        "-a",
+        "--all",
+        dest="all_data",
+        help="export all the data",
+        action='store_true',
+        default=DEFAULT_EXPORT_ALL_DATA
     )
 
 
@@ -91,7 +101,7 @@ def main() -> None:
     args = arg_parser.parse_args()
     chrome_db_adapter = create_chrome_db_adapter(args.user)
     mode_actions = {
-        "export": lambda: export_chrome_data(chrome_db_adapter, args.user, args.destination_folder),
+        "export": lambda: export_chrome_data(chrome_db_adapter, args.user, args.destination_folder, args.all_data),
         "import": lambda: import_chrome_data(chrome_db_adapter, args.from_file)
     }
     mode_actions[args.mode]()

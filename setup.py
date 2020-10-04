@@ -1,25 +1,25 @@
 import setuptools
 
-from chromesy import __version__
+from chpass import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="chromesy",
+    name="chpass",
     version=__version__,
     author="Ben Gabay",
     author_email="ben.gabay38@gmail.com",
     description="",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/bengabay11/chromesy",
+    url="https://github.com/bengabay11/chpass",
     packages=setuptools.find_packages(),
     install_requires=[
         "sqlalchemy==1.3.18"
     ],
     entry_points={
-        'console_scripts': ['chromesy = chromesy.cli:main'],
+        'console_scripts': ['chpass = chpass.cli:main'],
     },
     classifiers=[
         "Programming Language :: Python :: 3",

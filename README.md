@@ -1,5 +1,5 @@
-# chromesy
-chromesy is a command line tool for export and import chrome browser data.
+# chpass
+chpass is a command line tool for export and import chrome browser data.
 
 ## Features
 - import/export passwords
@@ -10,16 +10,20 @@ chromesy is a command line tool for export and import chrome browser data.
 
 ## Installing
 ```bash
-$ pip install chromesy
+$ pip install chpass
 ```
 
 ## Requirements
 - Python 3.6+
 - Chrome 84.0+
+- Supported operating systems:
+    - Windows 10
+    - Mac OS
+    - Linux
 
 ## Usage
 ```
-usage: chromesy [-h] {export,import} ...
+usage: chpass [-h] {export,import} ...
 
 Import and Export chrome data
 

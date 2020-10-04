@@ -1,6 +1,6 @@
 from shutil import copyfile
 
-from chromesy.services.path import get_chrome_profile_picture_path
+from chpass.services.path import get_chrome_profile_picture_path
 
 
 def export_profile_picture(user, destination_path):

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    chromesy
+    chpass
     ~~~~~
-    chromesy is a package for export and import chrome browser data.
+    chpass is a package for export and import chrome browser data.
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """
@@ -18,7 +18,7 @@ from .dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from .dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from .dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
 from .dal.DBConnection import DBConnection
-from chromesy.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
+from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 
 
 def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
@@ -51,7 +51,7 @@ def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
 
 def create_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="chromesy",
+        prog="chpass",
         description="Import and Export chrome data",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )

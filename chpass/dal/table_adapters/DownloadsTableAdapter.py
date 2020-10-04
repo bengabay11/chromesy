@@ -1,5 +1,5 @@
-from chromesy.dal.DBConnection import DBConnection
-from chromesy.dal.models.Download import Download
+from chpass.dal.DBConnection import DBConnection
+from chpass.dal.models.Download import Download
 
 
 class DownloadsTableAdapter(object):

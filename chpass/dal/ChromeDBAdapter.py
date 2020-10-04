@@ -1,7 +1,7 @@
-from chromesy.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
-from chromesy.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
-from chromesy.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
-from chromesy.utils.SingletonMeta import SingletonMeta
+from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
+from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
+from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
+from chpass.utils.SingletonMeta import SingletonMeta
 
 
 class ChromeDBAdapter(metaclass=SingletonMeta):

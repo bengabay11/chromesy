@@ -1,6 +1,6 @@
-from chromesy.dal.DBConnection import DBConnection
-from chromesy.dal.table_adapters.LoginsTableAdapter import LoginsTableAdapter
-from chromesy.utils.SingletonMeta import SingletonMeta
+from chpass.dal.DBConnection import DBConnection
+from chpass.dal.table_adapters.LoginsTableAdapter import LoginsTableAdapter
+from chpass.utils.SingletonMeta import SingletonMeta
 
 
 class LoginsDBAdapter(metaclass=SingletonMeta):

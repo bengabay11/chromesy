@@ -1,7 +1,7 @@
-from chromesy.dal.DBConnection import DBConnection
-from chromesy.dal.table_adapters.DownloadsTableAdapter import DownloadsTableAdapter
-from chromesy.dal.table_adapters.HistoryTableAdapter import HistoryTableAdapter
-from chromesy.utils.SingletonMeta import SingletonMeta
+from chpass.dal.DBConnection import DBConnection
+from chpass.dal.table_adapters.DownloadsTableAdapter import DownloadsTableAdapter
+from chpass.dal.table_adapters.HistoryTableAdapter import HistoryTableAdapter
+from chpass.utils.SingletonMeta import SingletonMeta
 
 
 class HistoryDBAdapter(metaclass=SingletonMeta):

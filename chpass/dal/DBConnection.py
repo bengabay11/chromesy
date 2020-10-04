@@ -3,8 +3,8 @@ from typing import Type, Any
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from chromesy.dal.models.Base import Base
-from chromesy.dal.session import session_scope
+from chpass.dal.models.Base import Base
+from chpass.dal.session import session_scope
 
 
 class DBConnection(object):

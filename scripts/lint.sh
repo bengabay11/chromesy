@@ -1,1 +1,1 @@
-pylint --rcfile=.pylintrc chromesy
+pylint --rcfile=.pylintrc chpass

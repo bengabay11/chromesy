@@ -1,5 +1,5 @@
-from chromesy.dal.DBConnection import DBConnection
-from chromesy.dal.models.Login import Login
+from chpass.dal.DBConnection import DBConnection
+from chpass.dal.models.Login import Login
 
 
 class LoginsTableAdapter(object):

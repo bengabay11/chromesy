@@ -1,5 +1,5 @@
-from chromesy.dal.DBConnection import DBConnection
-from chromesy.dal.models.History import History
+from chpass.dal.DBConnection import DBConnection
+from chpass.dal.models.History import History
 
 
 class HistoryTableAdapter(object):

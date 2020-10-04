@@ -1,5 +1,5 @@
-from chromesy.dal.DBConnection import DBConnection
-from chromesy.dal.models.TopSite import TopSite
+from chpass.dal.DBConnection import DBConnection
+from chpass.dal.models.TopSite import TopSite
 
 
 class TopSitesTableAdapter(object):

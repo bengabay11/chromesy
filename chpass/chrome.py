@@ -1,9 +1,9 @@
 import os
 
-from chromesy.dal.ChromeDBAdapter import ChromeDBAdapter
-from chromesy.services.profile_picture import export_profile_picture
-from chromesy.services.file_adapters import csv
-from chromesy.config import (
+from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
+from chpass.services.profile_picture import export_profile_picture
+from chpass.services.file_adapters import csv
+from chpass.config import (
     OUTPUT_CREDENTIALS_FILE,
     OUTPUT_HISTORY_FILE,
     OUTPUT_DOWNLOADS_FILE,

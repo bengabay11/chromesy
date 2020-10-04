@@ -15,10 +15,7 @@ $ pip install chpass
 ## Requirements
 - Python 3.6+
 - Chrome 84.0+
-- Supported operating systems:
-    - Windows 10
-    - Mac OS
-    - Linux
+- Windows 10/macOS/Linux
 
 ## Usage
 ```

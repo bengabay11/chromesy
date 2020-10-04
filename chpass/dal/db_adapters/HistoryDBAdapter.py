@@ -11,11 +11,11 @@ class HistoryDBAdapter(metaclass=SingletonMeta):
         self._downloads_table_adapter = DownloadsTableAdapter(self._db_connection)
 
     @property
-    def history(self) -> HistoryTableAdapter:
+    def history_table(self) -> HistoryTableAdapter:
         return self._history_table_adapter
 
     @property
-    def downloads(self) -> DownloadsTableAdapter:
+    def downloads_table(self) -> DownloadsTableAdapter:
         return self._downloads_table_adapter
 
     def close(self) -> None:

@@ -9,7 +9,7 @@ class LoginsDBAdapter(metaclass=SingletonMeta):
         self._logins_table_adapter = LoginsTableAdapter(self._db_connection)
 
     @property
-    def logins(self) -> LoginsTableAdapter:
+    def logins_table(self) -> LoginsTableAdapter:
         return self._logins_table_adapter
 
     def close(self) -> None:

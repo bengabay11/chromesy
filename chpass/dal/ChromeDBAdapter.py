@@ -16,15 +16,15 @@ class ChromeDBAdapter(metaclass=SingletonMeta):
         self._top_sites_db_adaper = top_sites_db_adaper
 
     @property
-    def logins(self) -> LoginsDBAdapter:
+    def logins_db(self) -> LoginsDBAdapter:
         return self._logins_db_adapter
 
     @property
-    def history(self) -> HistoryDBAdapter:
+    def history_db(self) -> HistoryDBAdapter:
         return self._history_db_adapter
 
     @property
-    def top_sites(self) -> TopSitesDBAdapter:
+    def top_sites_db(self) -> TopSitesDBAdapter:
         return self._top_sites_db_adaper
 
     def close(self) -> None:

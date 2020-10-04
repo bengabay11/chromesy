@@ -1,8 +1,7 @@
 # chpass
-chpass is a command line tool for export and import chrome browser data.
+Import and Export passwords for Chrome 🔑
 
-## Features
-- import/export passwords
+## Additional Features
 - history
 - google account profile picture
 - downloads
@@ -25,7 +24,7 @@ $ pip install chpass
 ```
 usage: chpass [-h] {export,import} ...
 
-Import and Export chrome data
+Import and Export chrome passwords
 
 positional arguments:
   {import,export}

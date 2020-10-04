@@ -2,7 +2,7 @@
 """
     chpass
     ~~~~~
-    chpass is a package for export and import chrome browser data.
+    chpass is a package for export and import chrome browser passwords.
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """
@@ -52,7 +52,7 @@ def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
 def create_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="chpass",
-        description="Import and Export chrome data",
+        description="Import and Export chrome passwords",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     subparsers = parser.add_subparsers(dest="mode")

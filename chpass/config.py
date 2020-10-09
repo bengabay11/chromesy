@@ -17,5 +17,8 @@ DEFAULT_EXPORT_ALL_DATA = False
 
 DB_PROTOCOL = "sqlite"
 
+CSV_ADAPTER_ENCODING = "utf-8"
 DEFAULT_USER = "~"
 WRITE_FILE_MODE = "w"
+
+PASSWORDS_FILE_BYTES_COLUMNS = ["form_data", "password_value", "possible_username_pairs"]

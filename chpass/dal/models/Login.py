@@ -11,6 +11,7 @@ class Login(Base):
     origin_url = Column(String)
     action_url = Column(String)
     username_element = Column(String)
+    username_value = Column(String)
     password_element = Column(String)
     password_value = Column(LargeBinary)
     submit_element = Column(String)

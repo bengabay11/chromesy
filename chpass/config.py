@@ -1,6 +1,9 @@
-CHROME_WINDOWS_PATH = r"AppData\Local\Google\Chrome\User Data\Default"
-CHROME_LINUX_PATH = ".config/google-chrome/Default/databases"
-CHROME_MAC_OS_PATH = "Library/Application Support/Google/Chrome"
+CHROME_FOLDER_OS_PATHS = {
+    "win32": r"AppData\Local\Google\Chrome\User Data\Default",
+    "linux": ".config/google-chrome/Default/databases",
+    "linux2": ".config/google-chrome/Default/databases",
+    "darwin": "Library/Application Support/Google/Chrome"
+}
 
 LOGINS_DB_FILE = "Login Data"
 HISTORY_DB_FILE = "History"

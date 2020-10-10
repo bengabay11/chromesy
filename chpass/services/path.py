@@ -17,10 +17,9 @@ def get_chrome_user_folder(user: str) -> str:
     home_directory = os.path.expanduser("~" + user)
     if not os.path.exists(home_directory):
         raise UserNotFoundException(user)
-    try:
-        chrome_folder_path = CHROME_FOLDER_OS_PATHS[sys.platform]
-    except KeyError:
+    if sys.platform not in CHROME_FOLDER_OS_PATHS.keys():
         raise OperatingSystemNotSupported(sys.platform)
+    chrome_folder_path = CHROME_FOLDER_OS_PATHS[sys.platform]
     chrome_user_folder = os.path.join(home_directory, chrome_folder_path)
     if not os.path.exists(chrome_user_folder):
         raise ChromeNotInstalledException(user)

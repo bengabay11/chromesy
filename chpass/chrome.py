@@ -3,10 +3,22 @@ import os
 from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
 from chpass.services.interfaces.IFileAdapter import IFileAdapter
 from chpass.services.profile_picture import export_profile_picture
-from chpass.config import (
-    OUTPUT_PROFILE_PICTURE_FILE,
-    PASSWORDS_FILE_BYTES_COLUMNS
-)
+from chpass.config import OUTPUT_PROFILE_PICTURE_FILE, PASSWORDS_FILE_BYTES_COLUMNS
+
+
+def export_additional_chrome_data(
+        chrome_db_adapter: ChromeDBAdapter,
+        user: str,
+        destination_folder: str,
+        file_adapter: IFileAdapter,
+        output_file_paths: dict) -> None:
+    history = chrome_db_adapter.history_db.history_table.get_chrome_history()
+    file_adapter.write(history, f"{destination_folder}/{output_file_paths['history']}")
+    downloads = chrome_db_adapter.history_db.downloads_table.get_chrome_downloads()
+    file_adapter.write(downloads, f"{destination_folder}/{output_file_paths['downloads']}")
+    top_sites = chrome_db_adapter.top_sites_db.top_sites_table.get_top_sites()
+    file_adapter.write(top_sites, f"{destination_folder}/{output_file_paths['top_sites']}")
+    export_profile_picture(user, f"{destination_folder}/{OUTPUT_PROFILE_PICTURE_FILE}")
 
 
 def export_chrome_data(
@@ -24,13 +36,7 @@ def export_chrome_data(
             current_credentials[bytes_column] = list(current_credentials[bytes_column])
     file_adapter.write(credentials, f"{destination_folder}/{output_file_paths['passwords']}")
     if all_data:
-        history = chrome_db_adapter.history_db.history_table.get_chrome_history()
-        file_adapter.write(history, f"{destination_folder}/{output_file_paths['history']}")
-        downloads = chrome_db_adapter.history_db.downloads_table.get_chrome_downloads()
-        file_adapter.write(downloads, f"{destination_folder}/{output_file_paths['downloads']}")
-        top_sites = chrome_db_adapter.top_sites_db.top_sites_table.get_top_sites()
-        file_adapter.write(top_sites, f"{destination_folder}/{output_file_paths['top_sites']}")
-        export_profile_picture(user, f"{destination_folder}/{OUTPUT_PROFILE_PICTURE_FILE}")
+        export_additional_chrome_data(chrome_db_adapter, user, destination_folder, file_adapter, output_file_paths)
 
 
 def read_bytes_column_from_csv(bytes_column: str) -> bytes:

@@ -1,6 +1,13 @@
 # chpass
 Import and Export passwords for Chrome 🔑
 
+## Additional Features
+- history
+- google account profile picture
+- downloads
+- top visited sites
+> Note: Chrome must be closed during the whole process, because its database is locked while running.
+
 ## Installing
 ```bash
 $ pip install chpass
@@ -9,14 +16,6 @@ you can also clone the repo and install locally:
 ```bash
 scripts/install.sh
 ```
-
-## Additional Features
-- history
-- google account profile picture
-- downloads
-- top visited sites
-> Note: Chrome must be closed during the whole process, because its database is locked while running.
-
 ## Usage
 export the user passwords:
 ```bash

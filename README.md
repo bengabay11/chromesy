@@ -11,6 +11,10 @@ Import and Export passwords for Chrome 🔑
 ```bash
 $ pip install chpass
 ```
+you can also clone the repo and install locally:
+```bash
+scripts/install.sh
+```
 
 ## Requirements
 - Python 3.6+

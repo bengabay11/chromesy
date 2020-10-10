@@ -19,7 +19,7 @@ setuptools.setup(
         "sqlalchemy==1.3.18"
     ],
     entry_points={
-        'console_scripts': ['chpass = chpass.cli:main'],
+        'console_scripts': ['chpass = chpass.__init__:main'],
     },
     classifiers=[
         "Programming Language :: Python :: 3",

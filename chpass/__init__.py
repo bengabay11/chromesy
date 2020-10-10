@@ -7,14 +7,16 @@
     :license: MIT, see LICENSE for more details.
 """
 
-__version__ = '1.0.0'
-
 from chpass.cli import create_arg_parser
 from chpass.config import OUTPUT_FILE_PATHS, DB_PROTOCOL
 from chpass.exceptions.FileAdapterNotSupportedException import FileAdapterNotSupportedException
 from chpass.services.chrome import create_chrome_db_adapter, export_chrome_data, import_chrome_data
 from chpass.services.file_adapters.csv import CsvFileAdapter
 from chpass.services.file_adapters.json import JsonFileAdapter
+
+__version__ = '1.0.0'
+__author__ = "Ben Gabay"
+__license__ = "MIT"
 
 
 def main() -> None:

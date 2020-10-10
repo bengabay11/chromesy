@@ -14,7 +14,7 @@ from chpass.services.chrome import create_chrome_db_adapter, export_chrome_data,
 from chpass.services.file_adapters.csv import CsvFileAdapter
 from chpass.services.file_adapters.json import JsonFileAdapter
 
-__version__ = '1.0.0'
+__version__ = '0.0.1'
 __author__ = "Ben Gabay"
 __license__ = "MIT"
 

@@ -1,6 +1,6 @@
 import setuptools
 
-from chpass import __version__
+from chpass import __version__, __author__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="chpass",
     version=__version__,
-    author="Ben Gabay",
+    author=__author__,
     author_email="ben.gabay38@gmail.com",
     license="License :: OSI Approved :: MIT License",
     description="Export and import chrome passwords",
@@ -20,6 +20,7 @@ setuptools.setup(
         "sqlalchemy==1.3.18",
         "pandas==1.1.2"
     ],
+    python_requires=">=3",
     entry_points={
         'console_scripts': ['chpass = chpass.__init__:main'],
     },

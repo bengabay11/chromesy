@@ -27,7 +27,6 @@ class DBConnection(object):
     def insert(self, row: Base) -> None:
         with session_scope(self._session_class) as session:
             session.add(row)
-            session.commit()
 
     def update(self, row: Base, column: Any, new_value: Any) -> None:
         setattr(row, column, new_value)
@@ -35,7 +34,6 @@ class DBConnection(object):
     def delete(self, row: Base) -> None:
         with session_scope(self._session_class) as session:
             session.delete(row)
-            session.commit()
 
     def close(self) -> None:
         self._connection.close()

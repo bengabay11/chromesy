@@ -16,24 +16,22 @@ you can also clone the repo and install locally:
 scripts/install.sh
 ```
 
+## Usage
+export the user passwords:
+```bash
+chpass export
+```
+the file will be saved under `dist/passwords.csv`
+
+import the passwords:
+```bash
+chpass import -f passwords.csv
+```
+
 ## Requirements
 - Python 3.6+
 - Chrome 84.0+
 - Windows 10/macOS/Linux
-
-## Usage
-```
-usage: chpass [-h] {export,import} ...
-
-Import and Export chrome passwords
-
-positional arguments:
-  {import,export}
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -u USER, --user USER
-```
 
 ## License
 This project is licensed under the terms of the MIT license.

@@ -6,7 +6,3 @@ class IFileAdapter(object):
 
     def read(self, path: str, converters: dict) -> list:
         raise NotImplementedError
-
-
-
-

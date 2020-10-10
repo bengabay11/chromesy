@@ -1,9 +1,27 @@
 import os
 
 from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
+from chpass.dal.DBConnection import DBConnection
+from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
+from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
+from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
 from chpass.services.interfaces.IFileAdapter import IFileAdapter
+from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 from chpass.services.profile_picture import export_profile_picture
 from chpass.config import OUTPUT_PROFILE_PICTURE_FILE, PASSWORDS_FILE_BYTES_COLUMNS
+
+
+def create_chrome_db_adapter(protocol, os_user: str) -> ChromeDBAdapter:
+    logins_db_connection = DBConnection()
+    history_db_connection = DBConnection()
+    top_sites_db_connection = DBConnection()
+    logins_db_connection.connect(protocol, get_chrome_logins_path(os_user))
+    history_db_connection.connect(protocol, get_chrome_history_path(os_user))
+    top_sites_db_connection.connect(protocol, get_chrome_top_sites_path(os_user))
+    logins_db_adapter = LoginsDBAdapter(logins_db_connection)
+    history_db_adapter = HistoryDBAdapter(history_db_connection)
+    top_sites_db_adapter = TopSitesDBAdapter(top_sites_db_connection)
+    return ChromeDBAdapter(logins_db_adapter, history_db_adapter, top_sites_db_adapter)
 
 
 def export_additional_chrome_data(

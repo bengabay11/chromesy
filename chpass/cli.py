@@ -2,20 +2,14 @@ import argparse
 import getpass
 
 
-from chpass.services.chrome import export_chrome_data, import_chrome_data
+from chpass.services.chrome import export_chrome_data, import_chrome_data, create_chrome_db_adapter
 from chpass.config import (
     DEFAULT_EXPORT_DESTINATION_FOLDER,
-    DB_PROTOCOL,
     DEFAULT_EXPORT_ALL_DATA,
     DEFAULT_FILE_ADAPTER,
-    OUTPUT_FILE_PATHS
+    OUTPUT_FILE_PATHS,
+    DB_PROTOCOL
 )
-from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
-from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
-from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
-from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
-from chpass.dal.DBConnection import DBConnection
-from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 from chpass.exceptions.FileAdapterNotSupportedException import FileAdapterNotSupportedException
 from chpass.services.file_adapters.csv import CsvFileAdapter
 from chpass.services.file_adapters.json import JsonFileAdapter
@@ -68,19 +62,6 @@ def create_arg_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def create_chrome_db_adapter(user: str) -> ChromeDBAdapter:
-    logins_db_connection = DBConnection()
-    history_db_connection = DBConnection()
-    top_sites_db_connection = DBConnection()
-    logins_db_connection.connect(DB_PROTOCOL, get_chrome_logins_path(user))
-    history_db_connection.connect(DB_PROTOCOL, get_chrome_history_path(user))
-    top_sites_db_connection.connect(DB_PROTOCOL, get_chrome_top_sites_path(user))
-    logins_db_adapter = LoginsDBAdapter(logins_db_connection)
-    history_db_adapter = HistoryDBAdapter(history_db_connection)
-    top_sites_db_adapter = TopSitesDBAdapter(top_sites_db_connection)
-    return ChromeDBAdapter(logins_db_adapter, history_db_adapter, top_sites_db_adapter)
-
-
 def main() -> None:
     arg_parser = create_arg_parser()
     args = arg_parser.parse_args()
@@ -92,7 +73,7 @@ def main() -> None:
         raise FileAdapterNotSupportedException(args.file_adapter)
     file_adapter = file_adapters[args.file_adapter]
     output_file_paths = OUTPUT_FILE_PATHS[args.file_adapter]
-    chrome_db_adapter = create_chrome_db_adapter(args.user)
+    chrome_db_adapter = create_chrome_db_adapter(DB_PROTOCOL, args.user)
     mode_actions = {
         "export": lambda: export_chrome_data(
             chrome_db_adapter,

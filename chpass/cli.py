@@ -2,7 +2,7 @@ import argparse
 import getpass
 
 
-from chpass.chrome import export_chrome_data, import_chrome_data
+from chpass.services.chrome import export_chrome_data, import_chrome_data
 from chpass.config import (
     DEFAULT_EXPORT_DESTINATION_FOLDER,
     DB_PROTOCOL,

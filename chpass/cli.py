@@ -21,7 +21,7 @@ def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
 
 
 def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
-    parser_export = subparsers.add_parser("export", description="outputs a csv file with the data")
+    parser_export = subparsers.add_parser("export", description="outputs a file with the passwords")
     parser_export.add_argument(
         "-d",
         "--destination",
@@ -34,7 +34,7 @@ def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
         "-a",
         "--all",
         dest="all_data",
-        help="export all the data",
+        help="export additional data - history, top sites, downloads",
         action='store_true',
         default=DEFAULT_EXPORT_ALL_DATA
     )

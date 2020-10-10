@@ -22,10 +22,7 @@ from chpass.services.file_adapters.json import JsonFileAdapter
 
 
 def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
-    parser_import = subparsers.add_parser(
-        "import",
-        description="imports a json file with the data to chrome",
-    )
+    parser_import = subparsers.add_parser("import", description="imports a json file with the data to chrome")
     parser_import.add_argument(
         "-f",
         "--from",
@@ -37,10 +34,7 @@ def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
 
 
 def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
-    parser_export = subparsers.add_parser(
-        "export",
-        description="outputs a csv file with the data"
-    )
+    parser_export = subparsers.add_parser("export", description="outputs a csv file with the data")
     parser_export.add_argument(
         "-d",
         "--destination",
@@ -69,20 +63,8 @@ def create_arg_parser() -> argparse.ArgumentParser:
     subparsers.required = True
     create_import_parser(subparsers)
     create_export_parser(subparsers)
-    parser.add_argument(
-        "-u",
-        "--user",
-        dest="user",
-        type=str,
-        default=getpass.getuser()
-    )
-    parser.add_argument(
-        "-i",
-        "--file-adapter",
-        dest="file_adapter",
-        type=str,
-        default=DEFAULT_FILE_ADAPTER
-    )
+    parser.add_argument("-u", "--user", dest="user", type=str, default=getpass.getuser())
+    parser.add_argument("-i", "--file-adapter", dest="file_adapter", type=str, default=DEFAULT_FILE_ADAPTER)
     return parser
 
 
@@ -96,11 +78,7 @@ def create_chrome_db_adapter(user: str) -> ChromeDBAdapter:
     logins_db_adapter = LoginsDBAdapter(logins_db_connection)
     history_db_adapter = HistoryDBAdapter(history_db_connection)
     top_sites_db_adapter = TopSitesDBAdapter(top_sites_db_connection)
-    return ChromeDBAdapter(
-        logins_db_adapter,
-        history_db_adapter,
-        top_sites_db_adapter
-    )
+    return ChromeDBAdapter(logins_db_adapter, history_db_adapter, top_sites_db_adapter)
 
 
 def main() -> None:

@@ -9,7 +9,7 @@ from chpass.config import (
 
 
 def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
-    parser_import = subparsers.add_parser("import", description="imports a json file with the data to chrome")
+    parser_import = subparsers.add_parser("import", description="imports a file with the passwords")
     parser_import.add_argument(
         "-f",
         "--from",
@@ -21,7 +21,7 @@ def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
 
 
 def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
-    parser_export = subparsers.add_parser("export", description="outputs a file with the passwords")
+    parser_export = subparsers.add_parser("export", description="exports a chrome data files")
     parser_export.add_argument(
         "-d",
         "--destination",

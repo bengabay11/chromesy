@@ -6,7 +6,10 @@ Import and Export passwords for Chrome 🔑
 - google account profile picture
 - downloads
 - top visited sites
-> Note: Chrome must be closed during the whole process, because its database is locked while running.
+
+> Note: Chrome must be closed during the whole process (import and export), because its database is locked while running.
+
+> Note: In order to import the passwords successfully, Chrome must be restarted after the import to load the passwords from the database.
 
 ## Installing
 ```bash

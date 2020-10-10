@@ -2,23 +2,23 @@ import argparse
 import getpass
 
 
-from .chrome import export_chrome_data, import_chrome_data
-from .config import (
+from chpass.chrome import export_chrome_data, import_chrome_data
+from chpass.config import (
     DEFAULT_EXPORT_DESTINATION_FOLDER,
     DB_PROTOCOL,
     DEFAULT_EXPORT_ALL_DATA,
     DEFAULT_FILE_ADAPTER,
     OUTPUT_FILE_PATHS
 )
-from .dal.ChromeDBAdapter import ChromeDBAdapter
-from .dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
-from .dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
-from .dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
-from .dal.DBConnection import DBConnection
+from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
+from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
+from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
+from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
+from chpass.dal.DBConnection import DBConnection
 from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
-from .exceptions.FileAdapterNotSupportedException import FileAdapterNotSupportedException
-from .services.file_adapters.csv import CsvFileAdapter
-from .services.file_adapters.json import JsonFileAdapter
+from chpass.exceptions.FileAdapterNotSupportedException import FileAdapterNotSupportedException
+from chpass.services.file_adapters.csv import CsvFileAdapter
+from chpass.services.file_adapters.json import JsonFileAdapter
 
 
 def create_import_parser(subparsers: argparse._SubParsersAction) -> None:

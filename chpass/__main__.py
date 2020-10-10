@@ -1,3 +1,3 @@
-from chpass.cli import main
+from chpass import main
 
 main()

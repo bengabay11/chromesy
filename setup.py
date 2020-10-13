@@ -24,6 +24,7 @@ setuptools.setup(
     entry_points={
         'console_scripts': ['chpass = chpass.__init__:main'],
     },
+    keywords="chrome passwords",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

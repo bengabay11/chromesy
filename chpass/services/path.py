@@ -13,10 +13,15 @@ from chpass.exceptions.OperatingSystemNotSupported import OperatingSystemNotSupp
 from chpass.exceptions.UserNotFoundException import UserNotFoundException
 
 
-def get_chrome_user_folder(user: str) -> str:
+def get_home_directory(user: str) -> str:
     home_directory = os.path.expanduser("~" + user)
     if not os.path.exists(home_directory):
         raise UserNotFoundException(user)
+    return home_directory
+
+
+def get_chrome_user_folder(user: str) -> str:
+    home_directory = get_chrome_history_path(user)
     if sys.platform not in CHROME_FOLDER_OS_PATHS.keys():
         raise OperatingSystemNotSupported(sys.platform)
     chrome_folder_path = CHROME_FOLDER_OS_PATHS[sys.platform]

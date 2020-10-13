@@ -5,6 +5,7 @@ from chpass.dal.DBConnection import DBConnection
 from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
+from chpass.services.encryption import ChromeEncryptionAdapter
 from chpass.services.interfaces.IFileAdapter import IFileAdapter
 from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 from chpass.services.profile_picture import export_profile_picture
@@ -45,13 +46,17 @@ def export_chrome_data(
         destination_folder: str,
         all_data: bool,
         file_adapter: IFileAdapter,
-        output_file_paths: dict) -> None:
+        output_file_paths: dict,
+        chrome_encryption_adapter: ChromeEncryptionAdapter = None) -> None:
     if not os.path.exists(destination_folder):
         os.mkdir(destination_folder)
     credentials = chrome_db_adapter.logins_db.logins_table.get_chrome_credentials()
     for current_credentials in credentials:
         for bytes_column in PASSWORDS_FILE_BYTES_COLUMNS:
             current_credentials[bytes_column] = list(current_credentials[bytes_column])
+        if chrome_encryption_adapter:
+            encrypted_password = current_credentials["password_value"]
+            current_credentials["password_value"] = chrome_encryption_adapter.decrypt_password(encrypted_password)
     file_adapter.write(credentials, f"{destination_folder}/{output_file_paths['passwords']}")
     if all_data:
         export_additional_chrome_data(chrome_db_adapter, user, destination_folder, file_adapter, output_file_paths)
@@ -63,7 +68,11 @@ def read_bytes_column_from_csv(bytes_column: str) -> bytes:
     return bytes(list_bytes)
 
 
-def import_chrome_data(chrome_db_adapter: ChromeDBAdapter, source_file_path: str, file_adapter: IFileAdapter) -> None:
+def import_chrome_data(
+        chrome_db_adapter: ChromeDBAdapter,
+        source_file_path: str,
+        file_adapter: IFileAdapter,
+        chrome_encryption_adapter: ChromeEncryptionAdapter = None) -> None:
     csv_converters = {}
     json_converters = {}
     for bytes_column in PASSWORDS_FILE_BYTES_COLUMNS:
@@ -71,4 +80,7 @@ def import_chrome_data(chrome_db_adapter: ChromeDBAdapter, source_file_path: str
         json_converters[bytes_column] = lambda list_bytes: bytes(list_bytes)
     chrome_credentials = file_adapter.read(source_file_path, json_converters)
     for current_credentials in chrome_credentials:
+        if chrome_encryption_adapter:
+            plain_password = current_credentials["password_value"]
+            current_credentials["password_value"] = chrome_encryption_adapter.encrypt_password(plain_password)
         chrome_db_adapter.logins_db.logins_table.insert_chrome_credentials(current_credentials)

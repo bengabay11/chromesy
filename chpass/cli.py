@@ -4,7 +4,9 @@ import getpass
 from chpass.config import (
     DEFAULT_EXPORT_DESTINATION_FOLDER,
     DEFAULT_EXPORT_ALL_DATA,
-    DEFAULT_FILE_ADAPTER
+    DEFAULT_FILE_ADAPTER,
+    DEFAULT_EXPORT_DECRYPT_PASSWORDS,
+    DEFAULT_IMPORT_ENCRYPT_PASSWORDS
 )
 
 
@@ -17,6 +19,14 @@ def create_import_parser(subparsers: argparse._SubParsersAction) -> None:
         help="credentials file to import from",
         type=str,
         required=True
+    )
+    parser_import.add_argument(
+        "-e",
+        "--encrypt-passwords",
+        dest="encrypt_passwords",
+        help="decrypt the exported passwords",
+        action='store_true',
+        default=DEFAULT_IMPORT_ENCRYPT_PASSWORDS
     )
 
 
@@ -37,6 +47,14 @@ def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
         help="export additional data - history, top sites, downloads",
         action='store_true',
         default=DEFAULT_EXPORT_ALL_DATA
+    )
+    parser_export.add_argument(
+        "-d",
+        "--decrypt-passwords",
+        dest="decrypt_passwords",
+        help="decrypt the exported passwords",
+        action='store_true',
+        default=DEFAULT_EXPORT_DECRYPT_PASSWORDS
     )
 
 

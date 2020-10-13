@@ -46,7 +46,6 @@ def main() -> None:
         ),
         "import": lambda: import_chrome_data(
             chrome_db_adapter,
-            args.user,
             args.from_file,
             file_adapter,
             chrome_encryption_adapter

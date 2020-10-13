@@ -2,10 +2,10 @@ import os
 import sys
 
 from chpass.config import (
-    HISTORY_DB_FILE,
-    LOGINS_DB_FILE,
-    TOP_SITES_DB_FILE,
-    GOOGLE_PICTURE_FILE,
+    HISTORY_DB_FILE_PATH,
+    LOGINS_DB_FILE_PATH,
+    TOP_SITES_DB_FILE_PATH,
+    GOOGLE_PICTURE_FILE_PATH,
     CHROME_FOLDER_OS_PATHS
 )
 from chpass.exceptions.ChromeNotInstalledException import ChromeNotInstalledException
@@ -21,7 +21,7 @@ def get_home_directory(user: str) -> str:
 
 
 def get_chrome_user_folder(user: str) -> str:
-    home_directory = get_chrome_history_path(user)
+    home_directory = get_home_directory(user)
     if sys.platform not in CHROME_FOLDER_OS_PATHS.keys():
         raise OperatingSystemNotSupported(sys.platform)
     chrome_folder_path = CHROME_FOLDER_OS_PATHS[sys.platform]
@@ -32,16 +32,16 @@ def get_chrome_user_folder(user: str) -> str:
 
 
 def get_chrome_history_path(user: str) -> str:
-    return "/" + os.path.join(get_chrome_user_folder(user), HISTORY_DB_FILE)
+    return "/" + os.path.join(get_chrome_user_folder(user), HISTORY_DB_FILE_PATH)
 
 
 def get_chrome_logins_path(user: str) -> str:
-    return "/" + os.path.join(get_chrome_user_folder(user), LOGINS_DB_FILE)
+    return "/" + os.path.join(get_chrome_user_folder(user), LOGINS_DB_FILE_PATH)
 
 
 def get_chrome_top_sites_path(user: str) -> str:
-    return "/" + os.path.join(get_chrome_user_folder(user), TOP_SITES_DB_FILE)
+    return "/" + os.path.join(get_chrome_user_folder(user), TOP_SITES_DB_FILE_PATH)
 
 
 def get_chrome_profile_picture_path(user: str) -> str:
-    return os.path.join(get_chrome_user_folder(user), GOOGLE_PICTURE_FILE)
+    return os.path.join(get_chrome_user_folder(user), GOOGLE_PICTURE_FILE_PATH)

@@ -1,14 +1,16 @@
+import os
+
 CHROME_FOLDER_OS_PATHS = {
-    "win32": r"AppData\Local\Google\Chrome\User Data\Default",
-    "linux": ".config/google-chrome/Default",
-    "linux2": ".config/google-chrome/Default",
+    "win32": r"AppData\Local\Google\Chrome\User Data",
+    "linux": ".config/google-chrome",
+    "linux2": ".config/google-chrome",
     "darwin": "Library/Application Support/Google/Chrome"
 }
 
-LOGINS_DB_FILE = "Login Data"
-HISTORY_DB_FILE = "History"
-TOP_SITES_DB_FILE = "Top Sites"
-GOOGLE_PICTURE_FILE = "Google Profile Picture.png"
+LOGINS_DB_FILE_PATH = os.path.join("Default", "Login Data")
+HISTORY_DB_FILE_PATH = os.path.join("Default", "History")
+TOP_SITES_DB_FILE_PATH = os.path.join("Default", "Top Sites")
+GOOGLE_PICTURE_FILE_PATH = os.path.join("Default", "Google Profile Picture.png")
 
 DEFAULT_EXPORT_DESTINATION_FOLDER = "dist"
 OUTPUT_FILE_PATHS = {

@@ -6,7 +6,8 @@ from chpass.config import (
     LOGINS_DB_FILE_PATH,
     TOP_SITES_DB_FILE_PATH,
     GOOGLE_PICTURE_FILE_PATH,
-    CHROME_FOLDER_OS_PATHS
+    CHROME_FOLDER_OS_PATHS,
+    LOCAL_STATE_FILE_PATH
 )
 from chpass.exceptions.ChromeNotInstalledException import ChromeNotInstalledException
 from chpass.exceptions.OperatingSystemNotSupported import OperatingSystemNotSupported
@@ -29,6 +30,10 @@ def get_chrome_user_folder(user: str) -> str:
     if not os.path.exists(chrome_user_folder):
         raise ChromeNotInstalledException(user)
     return chrome_user_folder
+
+
+def get_chrome_local_state_path(user: str) -> str:
+    return os.path.join(get_chrome_user_folder(user), LOCAL_STATE_FILE_PATH)
 
 
 def get_chrome_history_path(user: str) -> str:

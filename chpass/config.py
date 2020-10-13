@@ -1,7 +1,7 @@
 CHROME_FOLDER_OS_PATHS = {
     "win32": r"AppData\Local\Google\Chrome\User Data\Default",
-    "linux": ".config/google-chrome/Default/databases",
-    "linux2": ".config/google-chrome/Default/databases",
+    "linux": ".config/google-chrome/Default",
+    "linux2": ".config/google-chrome/Default",
     "darwin": "Library/Application Support/Google/Chrome"
 }
 

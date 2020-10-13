@@ -11,9 +11,25 @@ from chpass.services.path import get_chrome_local_state_path
 class ChromeEncryptionAdapter(object):
     def __init__(self, user):
         self._user = user
-        self._key = self._get_encryption_key()
+        self._key = self.get_encryption_key()
 
-    def _get_encryption_key(self):
+    @property
+    def user(self) -> str:
+        return self._user
+
+    @user.setter
+    def user(self, new_user: str) -> None:
+        self._user = new_user
+
+    @property
+    def key(self) -> str:
+        return self._key
+
+    @key.setter
+    def key(self, new_key: str) -> None:
+        self._key = new_key
+
+    def get_encryption_key(self):
         chrome_local_state = get_chrome_local_state_path(self._user)
         with open(chrome_local_state, READ_FILE_MODE, encoding="utf-8") as local_state_file:
             local_state = local_state_file.read()
@@ -27,7 +43,6 @@ class ChromeEncryptionAdapter(object):
         password = password[15:]
         cipher = AES.new(self._key, AES.MODE_GCM, iv)
         return cipher.decrypt(password)[:-16].decode()
-
 
     def encrypt_password(self, password: str) -> None:
         pass

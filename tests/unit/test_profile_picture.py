@@ -45,6 +45,3 @@ def test_export_profile_picture_invalid_destination_path():
         destination_path = -1
         export_profile_picture(user, destination_path)
     assert not os.path.exists(destination_path)
-
-
-test_export_profile_picture_invalid_destination_path()

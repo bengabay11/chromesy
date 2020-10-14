@@ -6,8 +6,9 @@
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """
+import sys
 
-from chpass.cli import create_arg_parser
+from chpass.cli import create_arg_parser, parse_args
 from chpass.config import OUTPUT_FILE_PATHS, DB_PROTOCOL
 from chpass.exceptions.FileAdapterNotSupportedException import FileAdapterNotSupportedException
 from chpass.services.chrome import create_chrome_db_adapter, export_chrome_data, import_chrome_data
@@ -20,8 +21,7 @@ __license__ = "MIT"
 
 
 def main() -> None:
-    arg_parser = create_arg_parser()
-    args = arg_parser.parse_args()
+    args = parse_args(sys.argv[1:])
     file_adapters = {
         "json": JsonFileAdapter(),
         "csv": CsvFileAdapter()

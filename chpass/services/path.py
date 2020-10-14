@@ -20,11 +20,11 @@ def get_home_directory(user: str) -> str:
     return home_directory
 
 
-def get_chrome_user_folder(user: str) -> str:
+def get_chrome_user_folder(user: str, platform=sys.platform) -> str:
     home_directory = get_home_directory(user)
-    if sys.platform not in CHROME_FOLDER_OS_PATHS.keys():
-        raise OperatingSystemNotSupported(sys.platform)
-    chrome_folder_path = CHROME_FOLDER_OS_PATHS[sys.platform]
+    if platform not in CHROME_FOLDER_OS_PATHS.keys():
+        raise OperatingSystemNotSupported(platform)
+    chrome_folder_path = CHROME_FOLDER_OS_PATHS[platform]
     chrome_user_folder = os.path.join(home_directory, chrome_folder_path)
     if not os.path.exists(chrome_user_folder):
         raise ChromeNotInstalledException(user)

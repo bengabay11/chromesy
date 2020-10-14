@@ -8,12 +8,12 @@ from chpass.exceptions.UserNotFoundException import UserNotFoundException
 from chpass.services.path import get_home_directory, get_chrome_user_folder
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def invalid_os() -> int:
     return -1
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def os_not_exist() -> str:
     return "ChromeOS"
 

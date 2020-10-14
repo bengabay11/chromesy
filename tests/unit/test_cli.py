@@ -5,17 +5,17 @@ import pytest
 from chpass import parse_args
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def export_mode() -> str:
     return "export"
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def import_mode() -> str:
     return "import"
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def from_file() -> str:
     return "passwords.csv"
 

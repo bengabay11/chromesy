@@ -6,7 +6,7 @@ import pytest
 from chpass import CsvFileAdapter, JsonFileAdapter
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def correct_data_list() -> List[dict]:
     return [{
         "column1": "value1",
@@ -15,17 +15,17 @@ def correct_data_list() -> List[dict]:
     }]
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def invalid_data_list() -> str:
     return "invalid data list"
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def not_exist_output_file_path() -> str:
     return "not_exist/test"
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="module")
 def invalid_output_file_path() -> int:
     return -1
 

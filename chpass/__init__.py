@@ -34,7 +34,7 @@ def create_file_adapter(file_adapter_type: str) -> IFileAdapter:
     object_factory = ObjectFactory()
     object_factory.register_builder("json", JsonFileAdapter)
     object_factory.register_builder("csv", CsvFileAdapter)
-    return object_factory.create(file_adapter_type, FileAdapterNotSupportedException)
+    return object_factory.create(file_adapter_type, exception=FileAdapterNotSupportedException)
 
 
 def create_chrome_db_adapter(protocol: str, os_user: str) -> ChromeDBAdapter:

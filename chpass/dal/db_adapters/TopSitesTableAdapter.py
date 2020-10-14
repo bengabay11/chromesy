@@ -1,6 +1,6 @@
 from chpass.dal.DBConnection import DBConnection
 from chpass.dal.table_adapters.TopSitesTableAdapter import TopSitesTableAdapter
-from chpass.utils.SingletonMeta import SingletonMeta
+from chpass.core.SingletonMeta import SingletonMeta
 
 
 class TopSitesDBAdapter(metaclass=SingletonMeta):

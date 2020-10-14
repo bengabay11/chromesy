@@ -1,7 +1,7 @@
 from chpass.dal.DBConnection import DBConnection
 from chpass.dal.table_adapters.DownloadsTableAdapter import DownloadsTableAdapter
 from chpass.dal.table_adapters.HistoryTableAdapter import HistoryTableAdapter
-from chpass.utils.SingletonMeta import SingletonMeta
+from chpass.core.SingletonMeta import SingletonMeta
 
 
 class HistoryDBAdapter(metaclass=SingletonMeta):

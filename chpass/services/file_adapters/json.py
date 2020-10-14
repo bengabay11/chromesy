@@ -11,7 +11,8 @@ class JsonFileAdapter(IFileAdapter):
     def read(self, path: str, converters: dict = None) -> list:
         df = pd.read_json(path)
         data = [dict(row[1]) for row in df.iterrows()]
-        for row in data:
-            for column, convert_callback in converters.items():
-                row[column] = convert_callback(row[column])
+        if converters:
+            for row in data:
+                for column, convert_callback in converters.items():
+                    row[column] = convert_callback(row[column])
         return data

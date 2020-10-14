@@ -9,7 +9,6 @@
 
 import sys
 
-from chpass import DBConnection, ChromeDBAdapter
 from chpass.cli import create_arg_parser, parse_args
 from chpass.config import OUTPUT_FILE_PATHS, DB_PROTOCOL
 from chpass.core.ObjectFactory import ObjectFactory

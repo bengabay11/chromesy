@@ -5,7 +5,7 @@ from chpass.dal.DBConnection import DBConnection
 from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
-from chpass.services.interfaces.IFileAdapter import IFileAdapter
+from chpass.core.interfaces import IFileAdapter
 from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 from chpass.services.profile_picture import export_profile_picture
 from chpass.config import OUTPUT_PROFILE_PICTURE_FILE, PASSWORDS_FILE_BYTES_COLUMNS

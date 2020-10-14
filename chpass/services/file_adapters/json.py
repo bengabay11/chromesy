@@ -1,6 +1,6 @@
 import pandas as pd
 
-from chpass.services.interfaces.IFileAdapter import IFileAdapter
+from chpass.core.interfaces import IFileAdapter
 
 
 class JsonFileAdapter(IFileAdapter):

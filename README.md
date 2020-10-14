@@ -7,10 +7,6 @@ Import and Export passwords for Chrome 🔑
 - downloads
 - top visited sites
 
-> Note: Chrome must be closed during the whole process (import and export), because its database is locked while running.
-
-> Note: In order to import the passwords successfully, Chrome must be restarted after the import to load the passwords from the database.
-
 ## Installing
 ```bash
 $ pip install chpass
@@ -45,6 +41,11 @@ chpass -i json export
 - Python 3.6+
 - Chrome 84.0+
 - Windows 10/macOS/Linux
+
+## Notes
+> Chrome must be closed during the whole process, because its database is locked while running.
+
+> In order to import the passwords successfully, Chrome must be restarted after the import to load the passwords from the database.
 
 ## License
 This project is licensed under the terms of the MIT license.

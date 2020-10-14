@@ -6,6 +6,7 @@
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """
+
 import sys
 
 from chpass import DBConnection, ChromeDBAdapter

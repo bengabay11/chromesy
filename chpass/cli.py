@@ -58,4 +58,3 @@ def create_arg_parser() -> argparse.ArgumentParser:
 def parse_args(args: list) -> argparse.Namespace:
     arg_parser = create_arg_parser()
     return arg_parser.parse_args(args)
-

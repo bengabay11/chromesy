@@ -57,9 +57,8 @@ def main(args=None) -> None:
     file_adapter = create_file_adapter(args.file_adapter)
     output_file_paths = OUTPUT_FILE_PATHS[args.file_adapter]
     chrome_db_adapter = create_chrome_db_adapter(DB_PROTOCOL, args.user)
-    export_params = (chrome_db_adapter, args.user, args.destination_folder, args.all_data, file_adapter, output_file_paths)
     mode_actions = {
-        "export": lambda: export_chrome_data(*export_params),
+        "export": lambda: export_chrome_data(chrome_db_adapter, args.user, args.destination_folder, args.all_data, file_adapter, output_file_paths),
         "import": lambda: import_chrome_data(chrome_db_adapter, args.from_file, file_adapter)
     }
     mode_actions[args.mode]()

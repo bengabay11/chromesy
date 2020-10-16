@@ -38,7 +38,7 @@ def export_chrome_data(
         export_additional_chrome_data(chrome_db_adapter, user, destination_folder, file_adapter, output_file_paths)
 
 
-def filter_duplicate_credentials(chrome_db_adapter: ChromeDBAdapter, credentials_to_import: List[dict]) -> list:
+def filter_existed_credentials(chrome_db_adapter: ChromeDBAdapter, credentials_to_import: List[dict]) -> list:
     db_credentials = chrome_db_adapter.logins_db.logins_table.get_chrome_credentials()
     db_credential_signon_realms = [current_db_credentials["signon_realm"] for current_db_credentials in db_credentials]
     unique_credentials = []
@@ -54,6 +54,6 @@ def import_chrome_data(chrome_db_adapter: ChromeDBAdapter, source_file_path: str
     if not os.path.exists(source_file_path):
         raise FileNotFoundError(source_file_path)
     credentials_to_import = file_adapter.read(source_file_path, byte_columns=PASSWORDS_FILE_BYTES_COLUMNS)
-    credentials_to_import = filter_duplicate_credentials(chrome_db_adapter, credentials_to_import)
-    for current_credentials in credentials_to_import:
+    unique_credentials_to_import = filter_existed_credentials(chrome_db_adapter, credentials_to_import)
+    for current_credentials in unique_credentials_to_import:
         chrome_db_adapter.logins_db.logins_table.insert_chrome_credentials(current_credentials)

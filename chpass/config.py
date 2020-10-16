@@ -38,3 +38,5 @@ DEFAULT_USER = "~"
 WRITE_FILE_MODE = "w"
 
 PASSWORDS_FILE_BYTES_COLUMNS = ["form_data", "password_value", "possible_username_pairs"]
+
+CREDENTIALS_ALREADY_EXIST_MESSAGE = "Warning: credentials already exist on chrome for this user. url: {}"

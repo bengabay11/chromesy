@@ -1,16 +1,32 @@
+import pytest
+
+
+@pytest.fixture(scope="module")
+def import_mode() -> str:
+    return "import"
+
+
+@pytest.fixture(scope="module")
+def from_file() -> str:
+    return "dist/passwords.csv"
+
+
+@pytest.fixture(scope="module")
+def file_adapter_type() -> str:
+    return "json"
 
 
 def test_default_import(import_mode, from_file):
-    pass
+    raise NotImplementedError
 
 
-def test_import_with_current_user(import_mode, from_file, current_user):
-    pass
+def test_import_with_connected_user(import_mode, from_file, connected_user):
+    raise NotImplementedError
 
 
 def test_import_with_disconnected_user(import_mode, from_file, disconnected_user):
-    pass
+    raise NotImplementedError
 
 
 def test_export_file_adapter(import_mode, from_file, file_adapter_type):
-    pass
+    raise NotImplementedError

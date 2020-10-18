@@ -34,18 +34,26 @@ def login_row():
     return Login(**params)
 
 
-def test_db_connection(db_connection, db_protocol, db_file_path):
+def test_db_connection_close_fail(db_connection):
+    with pytest.raises(AttributeError):
+        db_connection.close()
+
+
+def test_db_connection_connect(db_connection, db_protocol, db_file_path):
     db_connection.connect(db_protocol, db_file_path)
-    db_connection.close()
 
 
 @pytest.mark.parametrize("db_protocol", [-1])
 @pytest.mark.parametrize("db_file_path", [-1, "not_exist"])
-def test_db_connection_invalid_protocol(db_connection, db_protocol, db_file_path):
+def test_db_connection_connect_invalid_protocol(db_connection, db_protocol, db_file_path):
     with pytest.raises(ArgumentError):
         db_connection.connect(db_protocol, db_file_path)
 
 
-def test_db_connection_protocol_not_exist(db_connection, db_protocol_not_exist, db_file_path):
+def test_db_connection_connect_protocol_not_exist(db_connection, db_protocol_not_exist, db_file_path):
     with pytest.raises(NoSuchModuleError):
         db_connection.connect(db_protocol_not_exist, db_file_path)
+
+
+def test_db_connection_close(db_connection):
+    db_connection.close()

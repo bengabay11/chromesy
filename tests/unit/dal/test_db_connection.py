@@ -2,7 +2,6 @@ import pytest
 from sqlalchemy.exc import ArgumentError, NoSuchModuleError
 
 from chpass.dal.DBConnection import DBConnection
-from chpass.dal.models.Login import Login
 from chpass.services.path import get_chrome_logins_path
 
 
@@ -24,14 +23,6 @@ def db_protocol_not_exist() -> str:
 @pytest.fixture(scope="module")
 def db_file_path(connected_user) -> str:
     return get_chrome_logins_path(connected_user)
-
-
-@pytest.fixture(scope="module")
-def login_row():
-    params = {
-        "id": 1
-    }
-    return Login(**params)
 
 
 def test_db_connection_close_fail(db_connection):

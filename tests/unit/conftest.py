@@ -1,8 +1,10 @@
 import getpass
 
 import pytest
+from chpass.config import DB_PROTOCOL
 
-from chpass.dal.DBConnection import DBConnection
+from chpass import create_chrome_db_adapter
+from chpass.dal import ChromeDBAdapter
 
 
 @pytest.fixture(scope="session")
@@ -11,5 +13,11 @@ def connected_user() -> str:
 
 
 @pytest.fixture(scope="session")
-def db_connection() -> DBConnection:
-    pass
+def chrome_db_adapter(request, connected_user) -> ChromeDBAdapter:
+    chrome_db_adapter = create_chrome_db_adapter(DB_PROTOCOL, connected_user)
+
+    def fin():
+        chrome_db_adapter.close()
+
+    request.addfinalizer(fin)
+    return chrome_db_adapter

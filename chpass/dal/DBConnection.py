@@ -28,8 +28,10 @@ class DBConnection(object):
         with session_scope(self._session_class) as session:
             session.add(row)
 
-    def update(self, row: Base, column: Any, new_value: Any) -> None:
-        setattr(row, column, new_value)
+    def update(self, model: Type[Base], filters: tuple, column: Any, new_value: Any) -> None:
+        with session_scope(self._session_class) as session:
+            row = session.query(model).filter(*filters).one()
+            setattr(row, column, new_value)
 
     def delete(self, model: Type[Base], filters: tuple) -> None:
         with session_scope(self._session_class) as session:

@@ -18,9 +18,9 @@ class DBConnection(object):
         self._session_class = sessionmaker(bind=engine)
         self._connection = engine.connect()
 
-    def select(self, model: Type[Base], serializable: bool = False) -> list:
+    def select(self, model: Type[Base], filters: tuple = (), serializable: bool = False) -> list:
         with session_scope(self._session_class) as session:
-            query = session.query(model)
+            query = session.query(model).filter(*filters)
             results = query.all()
             return [result.json() for result in results] if serializable else results
 
@@ -31,8 +31,9 @@ class DBConnection(object):
     def update(self, row: Base, column: Any, new_value: Any) -> None:
         setattr(row, column, new_value)
 
-    def delete(self, row: Base) -> None:
+    def delete(self, model: Type[Base], filters: tuple) -> None:
         with session_scope(self._session_class) as session:
+            row = session.query(model).filter(*filters).one()
             session.delete(row)
 
     def close(self) -> None:

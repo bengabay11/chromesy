@@ -1,12 +1,11 @@
-from py_singleton import singleton
+from pattern_singleton import Singleton
 
 from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
 
 
-@singleton
-class ChromeDBAdapter(object):
+class ChromeDBAdapter(metaclass=Singleton):
     def __init__(
             self,
             logins_db_adapter: LoginsDBAdapter,

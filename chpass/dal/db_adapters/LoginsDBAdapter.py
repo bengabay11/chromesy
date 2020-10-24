@@ -1,11 +1,10 @@
-from py_singleton import singleton
+from pattern_singleton import Singleton
 
 from chpass.dal.DBConnection import DBConnection
 from chpass.dal.table_adapters.LoginsTableAdapter import LoginsTableAdapter
 
 
-@singleton
-class LoginsDBAdapter(object):
+class LoginsDBAdapter(metaclass=Singleton):
     def __init__(self, db_connection: DBConnection) -> None:
         self._db_connection = db_connection
         self._logins_table_adapter = LoginsTableAdapter(self._db_connection)

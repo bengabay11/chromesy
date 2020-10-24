@@ -1,12 +1,11 @@
-from py_singleton import singleton
+from pattern_singleton import Singleton
 
 from chpass.dal.DBConnection import DBConnection
 from chpass.dal.table_adapters.DownloadsTableAdapter import DownloadsTableAdapter
 from chpass.dal.table_adapters.HistoryTableAdapter import HistoryTableAdapter
 
 
-@singleton
-class HistoryDBAdapter(object):
+class HistoryDBAdapter(metaclass=Singleton):
     def __init__(self, db_connection: DBConnection) -> None:
         self._db_connection = db_connection
         self._history_table_adapter = HistoryTableAdapter(self._db_connection)

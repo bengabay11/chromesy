@@ -1,10 +1,12 @@
+from py_singleton import singleton
+
 from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
-from chpass.core.SingletonMeta import SingletonMeta
 
 
-class ChromeDBAdapter(metaclass=SingletonMeta):
+@singleton
+class ChromeDBAdapter(object):
     def __init__(
             self,
             logins_db_adapter: LoginsDBAdapter,

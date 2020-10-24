@@ -1,1 +1,0 @@
-pylint -E --rcfile=.pylintrc chpass

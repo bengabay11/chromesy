@@ -24,10 +24,6 @@ from chpass.services.file_adapters.JsonFileAdapter import JsonFileAdapter
 from chpass.core.interfaces import IFileAdapter
 from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 
-__version__ = '0.0.1'
-__author__ = "Ben Gabay"
-__license__ = "MIT"
-
 
 def create_file_adapter(file_adapter_type: str) -> IFileAdapter:
     object_factory = ObjectFactory()

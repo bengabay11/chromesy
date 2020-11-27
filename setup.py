@@ -1,6 +1,6 @@
 import setuptools
 
-from chpass import __version__, __author__
+from chpass.__version__ import __version__, __author__
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()

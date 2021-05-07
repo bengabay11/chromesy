@@ -2,11 +2,18 @@
 """
     chpass
     ~~~~~
-    chpass is a package for export and import chrome browser passwords.
+    chpass is a package for gather information from Chrome.
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """
 
-from .services.chrome import import_chrome_data, export_chrome_data
-from .services.profile_picture import export_profile_picture
+from .services.chrome import (
+    import_chrome_data,
+    export_chrome_data,
+    export_profile_picture,
+    export_downloads,
+    export_top_sites,
+    export_history,
+    export_passwords
+)
 from .services.path import get_chrome_user_folder, get_home_directory

@@ -3,7 +3,7 @@ import os
 import pytest
 
 from chpass.exceptions.UserNotFoundException import UserNotFoundException
-from chpass.services.profile_picture import export_profile_picture
+from chpass import export_profile_picture
 
 
 @pytest.fixture(scope="module")

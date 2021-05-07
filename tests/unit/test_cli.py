@@ -1,6 +1,6 @@
 import pytest
 
-from chpass import parse_args
+from chpass.cli import parse_args
 from chpass.config import DEFAULT_EXPORT_DESTINATION_FOLDER, DEFAULT_FILE_ADAPTER
 
 

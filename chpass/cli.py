@@ -29,6 +29,13 @@ def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
         help="destination folder to export the files",
         default=DEFAULT_EXPORT_DESTINATION_FOLDER
     )
+    export_subparsers = parser_export.add_subparsers(dest="export_kind")
+    export_subparsers.required = False
+    export_subparsers.add_parser("passwords", description="export passwords")
+    export_subparsers.add_parser("history", description="export history")
+    export_subparsers.add_parser("downloads", description="export downloads")
+    export_subparsers.add_parser("top_sites", description="export top sites")
+    export_subparsers.add_parser("profile_pic", description="export profile picture")
 
 
 def create_arg_parser() -> argparse.ArgumentParser:

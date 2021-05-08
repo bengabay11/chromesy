@@ -1,7 +1,7 @@
 import sys
 
 from chpass.cli import parse_args
-from chpass.config import OUTPUT_FILE_PATHS, DB_PROTOCOL
+from chpass.config import OUTPUT_FILE_PATHS, DB_PROTOCOL, OUTPUT_PROFILE_PICTURE_FILE
 from chpass.core.ObjectFactory import ObjectFactory
 from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
 from chpass.dal.DBConnection import DBConnection
@@ -9,7 +9,8 @@ from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
 from chpass.exceptions.FileAdapterNotSupportedException import FileAdapterNotSupportedException
-from chpass.services.chrome import export_chrome_data, import_chrome_data
+from chpass.services.chrome import export_chrome_data, import_chrome_data, export_passwords, export_downloads, \
+    export_history, export_top_sites, export_profile_picture
 from chpass.services.file_adapters.CsvFileAdapter import CsvFileAdapter
 from chpass.services.file_adapters.JsonFileAdapter import JsonFileAdapter
 from chpass.core.interfaces import IFileAdapter
@@ -36,7 +37,7 @@ def create_chrome_db_adapter(protocol: str, os_user: str) -> ChromeDBAdapter:
     return ChromeDBAdapter(logins_db_adapter, history_db_adapter, top_sites_db_adapter)
 
 
-def main(args=None) -> None:
+def start(args=None) -> None:
     if args:
         args = parse_args(args)
     else:
@@ -45,7 +46,8 @@ def main(args=None) -> None:
     output_file_paths = OUTPUT_FILE_PATHS[args.file_adapter]
     chrome_db_adapter = create_chrome_db_adapter(DB_PROTOCOL, args.user)
     mode_actions = {
-        "export": lambda: export_chrome_data(chrome_db_adapter, args.user, args.destination_folder, file_adapter, output_file_paths),
+        "export": lambda: export_chrome_data(chrome_db_adapter, args.destination_folder, file_adapter,
+                                             output_file_paths, args.user, args.export_kind),
         "import": lambda: import_chrome_data(chrome_db_adapter, args.from_file, file_adapter)
     }
     mode_actions[args.mode]()
@@ -53,4 +55,4 @@ def main(args=None) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    start()

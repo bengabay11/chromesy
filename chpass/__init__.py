@@ -6,6 +6,7 @@
     :copyright: 2020 Ben Gabay
     :license: MIT, see LICENSE for more details.
 """
+from .__main__ import start
 
 from .services.chrome import (
     import_chrome_data,
@@ -17,3 +18,7 @@ from .services.chrome import (
     export_passwords
 )
 from .services.path import get_chrome_user_folder, get_home_directory
+
+
+def main():
+    start()

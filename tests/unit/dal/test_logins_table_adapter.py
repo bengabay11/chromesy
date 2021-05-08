@@ -22,7 +22,6 @@ def login() -> dict:
         "password_value": bytes(),
         "submit_element": "test",
         "signon_realm": "test",
-        "preferred": 0,
         "date_created": 0,
         "blacklisted_by_user": 0,
         "scheme": 0,

@@ -16,7 +16,6 @@ class Login(Base):
     password_value = Column(LargeBinary)
     submit_element = Column(String)
     signon_realm = Column(String)
-    preferred = Column(Integer)
     date_created = Column(Integer)
     blacklisted_by_user = Column(Integer)
     scheme = Column(Integer)

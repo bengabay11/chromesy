@@ -9,7 +9,7 @@ setuptools.setup(
     author="Ben Gabay",
     author_email="ben.gabay38@gmail.com",
     license="License :: OSI Approved :: MIT License",
-    description="Export and import chrome passwords",
+    description="Gather information from chrome",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/bengabay11/chpass",

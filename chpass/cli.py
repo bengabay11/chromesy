@@ -34,7 +34,7 @@ def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
 def create_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="chpass",
-        description="Import and Export chrome passwords",
+        description="Gather information from chrome",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     subparsers = parser.add_subparsers(dest="mode")

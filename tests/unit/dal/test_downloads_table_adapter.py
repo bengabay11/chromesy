@@ -1,4 +1,4 @@
-from chpass.dal.models.Download import Download
+from chpass.dal.models.download import Download
 
 
 def test_get_downloads(chrome_db_adapter):

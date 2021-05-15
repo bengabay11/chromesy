@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.exc import ArgumentError, NoSuchModuleError
 
-from chpass.dal.DBConnection import DBConnection
+from chpass.dal.db_connection import DBConnection
 from chpass.services.path import get_chrome_logins_path
 
 

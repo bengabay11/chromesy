@@ -3,11 +3,11 @@ import sys
 from chpass.cli import parse_args
 from chpass.config import OUTPUT_FILE_PATHS, DB_PROTOCOL, OUTPUT_PROFILE_PICTURE_FILE
 from chpass.core.object_factory import ObjectFactory
-from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
-from chpass.dal.DBConnection import DBConnection
-from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
-from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
-from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
+from chpass.dal.chrome_db_adapter import ChromeDBAdapter
+from chpass.dal.db_connection import DBConnection
+from chpass.dal.db_adapters.history_db_adapter import HistoryDBAdapter
+from chpass.dal.db_adapters.logins_db_adapter import LoginsDBAdapter
+from chpass.dal.db_adapters.top_sites_db_adapter import TopSitesDBAdapter
 from chpass.exceptions.file_adapter_not_supported_exception import FileAdapterNotSupportedException
 from chpass.services.chrome import export_chrome_data, import_chrome_data, export_passwords, export_downloads, \
     export_history, export_top_sites, export_profile_picture

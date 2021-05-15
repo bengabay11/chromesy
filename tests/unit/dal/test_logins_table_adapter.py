@@ -2,7 +2,7 @@ import pytest
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
-from chpass.dal.models.Login import Login
+from chpass.dal.models.login import Login
 from chpass.exceptions.login_not_found_exception import LoginNotFoundException
 
 

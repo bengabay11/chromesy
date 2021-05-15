@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from chpass.exceptions.UserNotFoundException import UserNotFoundException
+from chpass.exceptions.user_not_found_exception import UserNotFoundException
 from chpass import export_profile_picture
 
 

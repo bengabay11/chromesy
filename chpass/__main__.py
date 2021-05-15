@@ -8,7 +8,7 @@ from chpass.dal.DBConnection import DBConnection
 from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
 from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
 from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
-from chpass.exceptions.FileAdapterNotSupportedException import FileAdapterNotSupportedException
+from chpass.exceptions.file_adapter_not_supported_exception import FileAdapterNotSupportedException
 from chpass.services.chrome import export_chrome_data, import_chrome_data, export_passwords, export_downloads, \
     export_history, export_top_sites, export_profile_picture
 from chpass.services.file_adapters.CsvFileAdapter import CsvFileAdapter

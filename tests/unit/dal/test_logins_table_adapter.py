@@ -3,7 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
 from chpass.dal.models.Login import Login
-from chpass.exceptions.LoginNotFoundException import LoginNotFoundException
+from chpass.exceptions.login_not_found_exception import LoginNotFoundException
 
 
 @pytest.fixture(scope="module")

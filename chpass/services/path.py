@@ -9,9 +9,9 @@ from chpass.config import (
     GOOGLE_PICTURE_FILE_PATH,
     CHROME_FOLDER_OS_PATHS
 )
-from chpass.exceptions.ChromeNotInstalledException import ChromeNotInstalledException
-from chpass.exceptions.OperatingSystemNotSupported import OperatingSystemNotSupported
-from chpass.exceptions.UserNotFoundException import UserNotFoundException
+from chpass.exceptions.chrome_not_installed_exception import ChromeNotInstalledException
+from chpass.exceptions.operating_system_not_supported import OperatingSystemNotSupported
+from chpass.exceptions.user_not_found_exception import UserNotFoundException
 
 
 def get_home_directory(user: str = getpass.getuser()) -> str:

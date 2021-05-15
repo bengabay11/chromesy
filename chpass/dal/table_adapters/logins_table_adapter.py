@@ -1,6 +1,6 @@
-from chpass.dal.DBConnection import DBConnection
-from chpass.dal.models.Login import Login
-from chpass.exceptions.LoginNotFoundException import LoginNotFoundException
+from chpass.dal.db_connection import DBConnection
+from chpass.dal.models.login import Login
+from chpass.exceptions.login_not_found_exception import LoginNotFoundException
 
 
 class LoginsTableAdapter(object):

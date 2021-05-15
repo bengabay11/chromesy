@@ -1,4 +1,4 @@
-from chpass.dal.models.TopSite import TopSite
+from chpass.dal.models.topSite import TopSite
 
 
 def test_get_top_sites(chrome_db_adapter):

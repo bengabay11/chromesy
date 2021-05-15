@@ -1,5 +1,5 @@
-from chpass.dal.DBConnection import DBConnection
-from chpass.dal.models.Download import Download
+from chpass.dal.db_connection import DBConnection
+from chpass.dal.models.download import Download
 
 
 class DownloadsTableAdapter(object):

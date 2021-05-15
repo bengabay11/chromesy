@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from sqlalchemy import Integer, String, Column
 
-from chpass.dal.models.Base import Base
+from chpass.dal.models.base import Base
 
 
 @dataclass

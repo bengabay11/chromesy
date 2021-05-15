@@ -1,8 +1,8 @@
 from pattern_singleton import Singleton
 
-from chpass.dal.DBConnection import DBConnection
-from chpass.dal.table_adapters.DownloadsTableAdapter import DownloadsTableAdapter
-from chpass.dal.table_adapters.HistoryTableAdapter import HistoryTableAdapter
+from chpass.dal.db_connection import DBConnection
+from chpass.dal.table_adapters.downloads_table_adapter import DownloadsTableAdapter
+from chpass.dal.table_adapters.history_table_adapter import HistoryTableAdapter
 
 
 class HistoryDBAdapter(metaclass=Singleton):

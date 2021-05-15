@@ -3,7 +3,6 @@ import getpass
 
 from chpass.config import (
     DEFAULT_EXPORT_DESTINATION_FOLDER,
-    DEFAULT_EXPORT_ALL_DATA,
     DEFAULT_FILE_ADAPTER
 )
 
@@ -30,20 +29,19 @@ def create_export_parser(subparsers: argparse._SubParsersAction) -> None:
         help="destination folder to export the files",
         default=DEFAULT_EXPORT_DESTINATION_FOLDER
     )
-    parser_export.add_argument(
-        "-a",
-        "--all",
-        dest="all_data",
-        help="export additional data - history, top sites, downloads",
-        action='store_true',
-        default=DEFAULT_EXPORT_ALL_DATA
-    )
+    export_subparsers = parser_export.add_subparsers(dest="export_kind")
+    export_subparsers.required = False
+    export_subparsers.add_parser("passwords", description="export passwords")
+    export_subparsers.add_parser("history", description="export history")
+    export_subparsers.add_parser("downloads", description="export downloads")
+    export_subparsers.add_parser("top_sites", description="export top sites")
+    export_subparsers.add_parser("profile_pic", description="export profile picture")
 
 
 def create_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="chpass",
-        description="Import and Export chrome passwords",
+        description="Gather information from chrome",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     subparsers = parser.add_subparsers(dest="mode")

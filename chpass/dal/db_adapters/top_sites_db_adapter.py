@@ -1,7 +1,7 @@
 from pattern_singleton import Singleton
 
-from chpass.dal.DBConnection import DBConnection
-from chpass.dal.table_adapters.TopSitesTableAdapter import TopSitesTableAdapter
+from chpass.dal.db_connection import DBConnection
+from chpass.dal.table_adapters.top_sites_table_adapter import TopSitesTableAdapter
 
 
 class TopSitesDBAdapter(metaclass=Singleton):

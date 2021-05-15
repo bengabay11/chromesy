@@ -1,0 +1,1 @@
+pytest --cov=chpass tests/integration

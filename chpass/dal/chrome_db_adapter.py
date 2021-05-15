@@ -1,8 +1,8 @@
 from pattern_singleton import Singleton
 
-from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
-from chpass.dal.db_adapters.LoginsDBAdapter import LoginsDBAdapter
-from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
+from chpass.dal.db_adapters.history_db_adapter import HistoryDBAdapter
+from chpass.dal.db_adapters.logins_db_adapter import LoginsDBAdapter
+from chpass.dal.db_adapters.top_sites_db_adapter import TopSitesDBAdapter
 
 
 class ChromeDBAdapter(metaclass=Singleton):

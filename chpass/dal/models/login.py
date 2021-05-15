@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from sqlalchemy import Integer, String, Column, LargeBinary
 
-from chpass.dal.models.Base import Base
+from chpass.dal.models.base import Base
 
 
 @dataclass
@@ -16,7 +16,6 @@ class Login(Base):
     password_value = Column(LargeBinary)
     submit_element = Column(String)
     signon_realm = Column(String)
-    preferred = Column(Integer)
     date_created = Column(Integer)
     blacklisted_by_user = Column(Integer)
     scheme = Column(Integer)

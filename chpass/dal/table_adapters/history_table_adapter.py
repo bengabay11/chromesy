@@ -1,5 +1,5 @@
-from chpass.dal.DBConnection import DBConnection
-from chpass.dal.models.History import History
+from chpass.dal.db_connection import DBConnection
+from chpass.dal.models.history import History
 
 
 class HistoryTableAdapter(object):

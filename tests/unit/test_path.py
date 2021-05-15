@@ -2,8 +2,8 @@ import os
 
 import pytest
 
-from chpass.exceptions.OperatingSystemNotSupported import OperatingSystemNotSupported
-from chpass.exceptions.UserNotFoundException import UserNotFoundException
+from chpass.exceptions.operating_system_not_supported import OperatingSystemNotSupported
+from chpass.exceptions.user_not_found_exception import UserNotFoundException
 from chpass.services.path import get_home_directory, get_chrome_user_folder
 
 

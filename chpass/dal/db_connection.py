@@ -3,7 +3,7 @@ from typing import Type, Any
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from chpass.dal.models.Base import Base
+from chpass.dal.models.base import Base
 from chpass.dal.session import session_scope
 
 

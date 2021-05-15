@@ -2,8 +2,8 @@ import pytest
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
-from chpass.dal.models.Login import Login
-from chpass.exceptions.LoginNotFoundException import LoginNotFoundException
+from chpass.dal.models.login import Login
+from chpass.exceptions.login_not_found_exception import LoginNotFoundException
 
 
 @pytest.fixture(scope="module")
@@ -22,7 +22,6 @@ def login() -> dict:
         "password_value": bytes(),
         "submit_element": "test",
         "signon_realm": "test",
-        "preferred": 0,
         "date_created": 0,
         "blacklisted_by_user": 0,
         "scheme": 0,

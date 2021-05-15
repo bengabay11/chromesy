@@ -1,7 +1,7 @@
 from pattern_singleton import Singleton
 
-from chpass.dal.DBConnection import DBConnection
-from chpass.dal.table_adapters.LoginsTableAdapter import LoginsTableAdapter
+from chpass.dal.db_connection import DBConnection
+from chpass.dal.table_adapters.logins_table_adapter import LoginsTableAdapter
 
 
 class LoginsDBAdapter(metaclass=Singleton):

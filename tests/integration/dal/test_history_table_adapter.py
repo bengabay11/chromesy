@@ -1,4 +1,4 @@
-from chpass.dal.models.History import History
+from chpass.dal.models.history import History
 
 
 def test_get_history(chrome_db_adapter):

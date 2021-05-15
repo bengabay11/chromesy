@@ -125,8 +125,7 @@ def export_chrome_data(
                                               output_file_paths["downloads"]),
         "top_sites": lambda: export_top_sites(chrome_db_adapter, file_adapter, destination_folder,
                                               output_file_paths["top_sites"]),
-        "profile_pic": lambda: export_profile_picture(f"{destination_folder}/{OUTPUT_PROFILE_PICTURE_FILE}",
-                                                      user)
+        "profile_pic": lambda: export_profile_picture(f"{destination_folder}/{output_file_paths['profile_picture']}", user)
     }
     if export_kind:
         export_functions[export_kind]()

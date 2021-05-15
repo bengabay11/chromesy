@@ -11,8 +11,8 @@ from chpass.dal.db_adapters.TopSitesTableAdapter import TopSitesDBAdapter
 from chpass.exceptions.file_adapter_not_supported_exception import FileAdapterNotSupportedException
 from chpass.services.chrome import export_chrome_data, import_chrome_data, export_passwords, export_downloads, \
     export_history, export_top_sites, export_profile_picture
-from chpass.services.file_adapters.CsvFileAdapter import CsvFileAdapter
-from chpass.services.file_adapters.JsonFileAdapter import JsonFileAdapter
+from chpass.services.file_adapters.csv_file_adapter import CsvFileAdapter
+from chpass.services.file_adapters.json_file_adapter import JsonFileAdapter
 from chpass.core.interfaces import IFileAdapter
 from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 

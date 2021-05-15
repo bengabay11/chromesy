@@ -13,12 +13,18 @@ def generic_export(
         get_data_func: Callable,
         file_adapter: IFileAdapter,
         destination_folder: str,
-        output_path: str) -> None:
+        filename: str) -> None:
     data = get_data_func(serializable=True)
-    file_adapter.write(data, f"{destination_folder}/{output_path}")
+    file_adapter.write(data, f"{destination_folder}/{filename}")
 
 
 def export_profile_picture(destination_path: str, user: str = getpass.getuser()) -> None:
+    """Exports google profile picture
+    :param destination_path: Destination path to export the picture
+    :param user: Chrome user
+    :return: None
+    :rtype: None
+    """
     source_path = get_chrome_profile_picture_path(user)
     copyfile(source_path, destination_path)
 
@@ -27,36 +33,68 @@ def export_history(
         chrome_db_adapter: ChromeDBAdapter,
         file_adapter: IFileAdapter,
         destination_folder: str,
-        output_path: str) -> None:
+        filename: str) -> None:
+    """Exports chrome history to a file
+    :param chrome_db_adapter: Adapter for the chrome db
+    :param file_adapter: Adapter for writing the history data to a file
+    :param destination_folder: Destination folder path to save file in
+    :param filename: Destination file name for the history
+    :return: None
+    :rtype: None
+    """
     generic_export(chrome_db_adapter.history_db.history_table.get_chrome_history, file_adapter, destination_folder,
-                   output_path)
+                   filename)
 
 
 def export_downloads(
         chrome_db_adapter: ChromeDBAdapter,
         file_adapter: IFileAdapter,
         destination_folder: str,
-        output_path: str) -> None:
+        filename: str) -> None:
+    """Exports chrome downloads to a file
+    :param chrome_db_adapter: Adapter for the chrome db
+    :param file_adapter: Adapter for writing the downloads data to a file
+    :param destination_folder: Destination folder path to save file in
+    :param filename: Destination file name for the downloads
+    :return: None
+    :rtype: None
+    """
     generic_export(chrome_db_adapter.history_db.downloads_table.get_chrome_downloads, file_adapter, destination_folder,
-                   output_path)
+                   filename)
 
 
 def export_top_sites(
         chrome_db_adapter: ChromeDBAdapter,
         file_adapter: IFileAdapter,
         destination_folder: str,
-        output_path: str) -> None:
+        filename: str) -> None:
+    """Exports chrome top sites to a file
+    :param chrome_db_adapter: Adapter for the chrome db
+    :param file_adapter: Adapter for writing the top sites data to a file
+    :param destination_folder: Destination folder path to save file in
+    :param filename: Destination file name for the top sites
+    :return: None
+    :rtype: None
+    """
     generic_export(chrome_db_adapter.top_sites_db.top_sites_table.get_top_sites, file_adapter, destination_folder,
-                   output_path)
+                   filename)
 
 
 def export_passwords(
         chrome_db_adapter: ChromeDBAdapter,
         file_adapter: IFileAdapter,
         destination_folder: str,
-        output_path: str) -> None:
+        filename: str) -> None:
+    """Exports chrome passwords to a file
+    :param chrome_db_adapter: Adapter for the chrome db
+    :param file_adapter: Adapter for writing the passwords data to a file
+    :param destination_folder: Destination folder path to save file in
+    :param filename: Destination file name for the passwords
+    :return: None
+    :rtype: None
+    """
     logins = chrome_db_adapter.logins_db.logins_table.get_all_logins(serializable=True)
-    file_adapter.write(logins, f"{destination_folder}/{output_path}", byte_columns=PASSWORDS_FILE_BYTES_COLUMNS)
+    file_adapter.write(logins, f"{destination_folder}/{filename}", byte_columns=PASSWORDS_FILE_BYTES_COLUMNS)
 
 
 def export_chrome_data(
@@ -66,6 +104,16 @@ def export_chrome_data(
         output_file_paths: dict,
         user: str = getpass.getuser(),
         export_kind: str = None) -> None:
+    """Exports chrome data to a file
+    :param chrome_db_adapter: Adapter for the chrome db
+    :param destination_folder: Destination folder path to save file in
+    :param file_adapter: Adapter for writing the data to a file
+    :param output_file_paths: Dictionary that maps between data type and its destination file path
+    :param user: Chrome user
+    :param export_kind: Specific data type export instead of export all the data
+    :return: None
+    :rtype: None
+    """
     if not os.path.exists(destination_folder):
         os.mkdir(destination_folder)
     export_functions = {
@@ -100,6 +148,13 @@ def filter_existed_logins(chrome_db_adapter: ChromeDBAdapter, logins_to_import: 
 
 
 def import_chrome_data(chrome_db_adapter: ChromeDBAdapter, source_file_path: str, file_adapter: IFileAdapter) -> None:
+    """Imports data to chrome db.
+    :param chrome_db_adapter: Adapter for the chrome db
+    :param source_file_path: Source file to import the data from
+    :param file_adapter: Adapter to read the data from the file
+    :return: None
+    :rtype: None
+    """
     if not os.path.exists(source_file_path):
         raise FileNotFoundError(source_file_path)
     logins_to_import = file_adapter.read(source_file_path, byte_columns=PASSWORDS_FILE_BYTES_COLUMNS)

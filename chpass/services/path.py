@@ -15,6 +15,11 @@ from chpass.exceptions.UserNotFoundException import UserNotFoundException
 
 
 def get_home_directory(user: str = getpass.getuser()) -> str:
+    """Get home directory path of the given user
+    :param user: OS user
+    :return: Home directory
+    :rtype: str
+    """
     home_directory = os.path.expanduser("~" + user)
     if not os.path.exists(home_directory):
         raise UserNotFoundException(user)
@@ -22,6 +27,12 @@ def get_home_directory(user: str = getpass.getuser()) -> str:
 
 
 def get_chrome_user_folder(user: str = getpass.getuser(), platform=sys.platform) -> str:
+    """Get chrome folder path of the given user
+    :param user: Chrome user
+    :param platform: Operating system
+    :return: Chrome user folder
+    :rtype: str
+    """
     home_directory = get_home_directory(user)
     if platform not in CHROME_FOLDER_OS_PATHS.keys():
         raise OperatingSystemNotSupported(platform)

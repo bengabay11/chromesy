@@ -9,7 +9,7 @@
 from .__main__ import start
 
 from .services.chrome import (
-    import_chrome_data,
+    import_chrome_passwords,
     export_chrome_data,
     export_profile_picture,
     export_downloads,

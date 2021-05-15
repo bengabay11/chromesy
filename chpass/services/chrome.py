@@ -146,11 +146,11 @@ def filter_existed_logins(chrome_db_adapter: ChromeDBAdapter, logins_to_import: 
     return unique_logins
 
 
-def import_chrome_data(chrome_db_adapter: ChromeDBAdapter, source_file_path: str, file_adapter: file_adapter_interface) -> None:
-    """Imports data to chrome db.
+def import_chrome_passwords(chrome_db_adapter: ChromeDBAdapter, source_file_path: str, file_adapter: file_adapter_interface) -> None:
+    """Imports passwords to chrome db.
     :param chrome_db_adapter: Adapter for the chrome db
-    :param source_file_path: Source file to import the data from
-    :param file_adapter: Adapter to read the data from the file
+    :param source_file_path: Source file to import the passwords from
+    :param file_adapter: Adapter to read the passwords from a file
     :return: None
     :rtype: None
     """

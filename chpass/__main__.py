@@ -2,7 +2,7 @@ import sys
 
 from chpass.cli import parse_args
 from chpass.config import OUTPUT_FILE_PATHS, DB_PROTOCOL, OUTPUT_PROFILE_PICTURE_FILE
-from chpass.core.ObjectFactory import ObjectFactory
+from chpass.core.object_factory import ObjectFactory
 from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
 from chpass.dal.DBConnection import DBConnection
 from chpass.dal.db_adapters.HistoryDBAdapter import HistoryDBAdapter
@@ -13,11 +13,11 @@ from chpass.services.chrome import export_chrome_data, import_chrome_data, expor
     export_history, export_top_sites, export_profile_picture
 from chpass.services.file_adapters.csv_file_adapter import CsvFileAdapter
 from chpass.services.file_adapters.json_file_adapter import JsonFileAdapter
-from chpass.core.interfaces import IFileAdapter
+from chpass.core.interfaces import file_adapter_interface
 from chpass.services.path import get_chrome_logins_path, get_chrome_history_path, get_chrome_top_sites_path
 
 
-def create_file_adapter(file_adapter_type: str) -> IFileAdapter:
+def create_file_adapter(file_adapter_type: str) -> file_adapter_interface:
     object_factory = ObjectFactory()
     object_factory.register_builder("json", JsonFileAdapter)
     object_factory.register_builder("csv", CsvFileAdapter)

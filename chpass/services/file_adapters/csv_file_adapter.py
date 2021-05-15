@@ -3,7 +3,7 @@ from typing import List
 import pandas as pd
 
 from chpass.config import CSV_ADAPTER_ENCODING
-from chpass.core.interfaces.IFileAdapter import IFileAdapter
+from chpass.core.interfaces.file_adapter_interface import IFileAdapter
 from chpass.services.bytes import str_bytes_to_bytes, convert_bytes_in_data
 
 

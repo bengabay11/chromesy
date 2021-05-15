@@ -1,6 +1,6 @@
 
 
-class ObjectFactory:
+class ObjectFactory(object):
     def __init__(self):
         self._builders = {}
 

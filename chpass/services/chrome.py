@@ -4,14 +4,14 @@ from shutil import copyfile
 from typing import List, Callable
 
 from chpass.dal.ChromeDBAdapter import ChromeDBAdapter
-from chpass.core.interfaces import IFileAdapter
+from chpass.core.interfaces import file_adapter_interface
 from chpass.config import OUTPUT_PROFILE_PICTURE_FILE, PASSWORDS_FILE_BYTES_COLUMNS, CREDENTIALS_ALREADY_EXIST_MESSAGE
 from chpass.services.path import get_chrome_profile_picture_path
 
 
 def generic_export(
         get_data_func: Callable,
-        file_adapter: IFileAdapter,
+        file_adapter: file_adapter_interface,
         destination_folder: str,
         filename: str) -> None:
     data = get_data_func(serializable=True)
@@ -31,7 +31,7 @@ def export_profile_picture(destination_path: str, user: str = getpass.getuser())
 
 def export_history(
         chrome_db_adapter: ChromeDBAdapter,
-        file_adapter: IFileAdapter,
+        file_adapter: file_adapter_interface,
         destination_folder: str,
         filename: str) -> None:
     """Exports chrome history to a file
@@ -48,7 +48,7 @@ def export_history(
 
 def export_downloads(
         chrome_db_adapter: ChromeDBAdapter,
-        file_adapter: IFileAdapter,
+        file_adapter: file_adapter_interface,
         destination_folder: str,
         filename: str) -> None:
     """Exports chrome downloads to a file
@@ -65,7 +65,7 @@ def export_downloads(
 
 def export_top_sites(
         chrome_db_adapter: ChromeDBAdapter,
-        file_adapter: IFileAdapter,
+        file_adapter: file_adapter_interface,
         destination_folder: str,
         filename: str) -> None:
     """Exports chrome top sites to a file
@@ -82,7 +82,7 @@ def export_top_sites(
 
 def export_passwords(
         chrome_db_adapter: ChromeDBAdapter,
-        file_adapter: IFileAdapter,
+        file_adapter: file_adapter_interface,
         destination_folder: str,
         filename: str) -> None:
     """Exports chrome passwords to a file
@@ -100,7 +100,7 @@ def export_passwords(
 def export_chrome_data(
         chrome_db_adapter: ChromeDBAdapter,
         destination_folder: str,
-        file_adapter: IFileAdapter,
+        file_adapter: file_adapter_interface,
         output_file_paths: dict,
         user: str = getpass.getuser(),
         export_kind: str = None) -> None:
@@ -147,7 +147,7 @@ def filter_existed_logins(chrome_db_adapter: ChromeDBAdapter, logins_to_import: 
     return unique_logins
 
 
-def import_chrome_data(chrome_db_adapter: ChromeDBAdapter, source_file_path: str, file_adapter: IFileAdapter) -> None:
+def import_chrome_data(chrome_db_adapter: ChromeDBAdapter, source_file_path: str, file_adapter: file_adapter_interface) -> None:
     """Imports data to chrome db.
     :param chrome_db_adapter: Adapter for the chrome db
     :param source_file_path: Source file to import the data from
